@@ -4,6 +4,7 @@ import "./login.css";
 import LoginInput from "../../components/inputs/login";
 import { useState } from "react";
 import * as Yup from "yup";
+import Footer from "../../components/inputs/login/footer";
 
 const Login = () => {
     const [login, setLogin] = useState({ email: "", password: "" });
@@ -76,6 +77,9 @@ const Login = () => {
                         </p>
                     </div>
                 </div>
+            </div>
+            <div className='footer'>
+                <Footer />
             </div>
         </div>
     );
