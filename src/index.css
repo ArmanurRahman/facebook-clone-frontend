@@ -35,3 +35,15 @@ a {
   --shadow-3: rgba(0, 0, 0, 0.3);
   --shadow-inset: rgba(255, 255, 255, 0.5);
 }
+
+.btn {
+  border: none;
+  outline: none;
+  padding: .5px 12px;
+  border-radius: 7px;
+  font-family: inherit;
+
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+}
