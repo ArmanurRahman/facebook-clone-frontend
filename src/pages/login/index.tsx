@@ -5,6 +5,7 @@ import LoginInput from "../../components/inputs/login";
 import { useState } from "react";
 import * as Yup from "yup";
 import Footer from "../../components/inputs/login/footer";
+import RegisterForm from "../../components/registration/registerForm";
 
 const Login = () => {
     const [login, setLogin] = useState({ email: "", password: "" });
@@ -78,6 +79,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <RegisterForm />
             <div className='footer'>
                 <Footer />
             </div>

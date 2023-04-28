@@ -10,7 +10,9 @@
     padding-left: .5rem;
     border-radius: 10px;
 }
-
+.input_wrap input:focus {
+    border-color: var(--dark-bg-third)
+}
 .input_error {
     position: relative;
     padding: 1rem .5rem;

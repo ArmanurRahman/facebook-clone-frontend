@@ -1,0 +1,105 @@
+.container {
+    overflow-y: auto;
+}
+.register_form {
+    background-color: var(--bg-primary);
+    padding: 1rem;
+    margin-top: 5rem;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 1px 2px var(--shadow-1);
+}
+
+.register_title {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.register_title span:first-of-type {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.register_title span:last-of-type {
+    font-size: .8rem;
+}
+.register_exit_icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.register_controls--form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.register_form .dateofbirth span{
+    color: var(--color-secondary);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+}
+
+.register_form .dateofbirth_controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    height: 35px;
+}
+
+.register_form .dateofbirth_controls select{
+    border-radius: .4rem;
+    padding: 0 .5rem;
+    color: var(--color-secondary);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.register_form .gender span {
+    color: var(--color-secondary);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+    border-color: var(--dark-color-secondary);
+}
+
+.gerder_items {
+    display: flex;
+    gap: 1rem;
+}
+.register_form .gender label {
+    color: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid var(--dark-color-secondary);
+    padding: .5rem;
+    border-radius: .4rem;
+    width: 100px;
+}
+
+.register_form .info_text {
+    color: var(--color-secondary);
+    font-size: 12px;
+}
+
+.register_form .info_text span {
+    color: var(--blue-color);
+}
+
+.register_form .btn-signup{
+    background-color: var(--green-color);
+    width: 200px;
+    margin: 0 auto;
+}

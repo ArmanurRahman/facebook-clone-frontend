@@ -39,11 +39,21 @@ a {
 .btn {
   border: none;
   outline: none;
-  padding: .5px 12px;
+  padding: .6rem 12px;
   border-radius: 7px;
   font-family: inherit;
 
   color: #fff;
   cursor: pointer;
   width: 100%;
+}
+
+.blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background-color: rgba(255, 255, 255, 0.8);
 }
