@@ -1,5 +1,6 @@
 .input {
     position: relative;
+    width: 100%;
 }
 .input_wrap input {
     width: 100%;

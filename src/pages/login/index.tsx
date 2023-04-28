@@ -10,6 +10,7 @@ import RegisterForm from "../../components/registration/registerForm";
 const Login = () => {
     const [login, setLogin] = useState({ email: "", password: "" });
     const { email, password } = login;
+    const [showRegistration, setShowRegistration] = useState(false);
 
     const handleLoginChange = (e: React.ChangeEvent<any>) => {
         const { name, value } = e.target;
@@ -69,7 +70,10 @@ const Login = () => {
                             Forgotten password?
                         </Link>
                         <div className='devider'></div>
-                        <button className='create_account btn btn-green'>
+                        <button
+                            className='create_account btn btn-green'
+                            onClick={() => setShowRegistration(true)}
+                        >
                             Create Account
                         </button>
                         <p>
@@ -79,7 +83,10 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-            <RegisterForm />
+            {showRegistration && (
+                <RegisterForm setShowRegistration={setShowRegistration} />
+            )}
+
             <div className='footer'>
                 <Footer />
             </div>

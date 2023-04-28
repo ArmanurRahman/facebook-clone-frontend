@@ -3,7 +3,14 @@ import LoginInput from "../inputs/login";
 import "./style.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import DotLoader from "react-spinners/DotLoader";
+import axios, { AxiosResponse, AxiosError } from "axios";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
+interface RegFormProps {
+    setShowRegistration: (a: boolean) => void;
+}
 const initialRegistrationData = {
     firstName: "",
     lastName: "",
@@ -14,11 +21,17 @@ const initialRegistrationData = {
     bDay: new Date().getDay(),
     gender: "",
 };
-const RegisterForm = () => {
+const RegisterForm: React.FC<RegFormProps> = ({ setShowRegistration }) => {
+    const navigate = useNavigate();
     const [registrationData, setRegistrationData] = useState(
         initialRegistrationData
     );
 
+    const [dateError, setDateError] = useState<undefined | string>();
+    const [genderError, setGenderError] = useState<undefined | string>();
+    const [error, setError] = useState<string | undefined>();
+    const [success, setSuccess] = useState<string | undefined>();
+    const [loading, setLoading] = useState<boolean>(false);
     const registrationValidation = Yup.object({
         firstName: Yup.string()
             .required("What is your first name?")
@@ -54,7 +67,54 @@ const RegisterForm = () => {
         setRegistrationData((prevState) => ({ ...prevState, [name]: value }));
     };
 
-    const closeHandler = () => {};
+    const registerSubmit = async () => {
+        try {
+            setLoading(true);
+            const response: AxiosResponse<UserResponse> = await axios.post(
+                `${process.env.REACT_APP_BACKEND_URL}/user/register`,
+                registrationData
+            );
+            const { data } = response;
+            setLoading(false);
+            setSuccess(data.message);
+            setError("");
+            setTimeout(() => {
+                navigate("/");
+            }, 2000);
+        } catch (error: any) {
+            setLoading(false);
+            setSuccess("");
+            setError(error.response.data.message);
+        }
+    };
+    const closeHandler = () => {
+        setShowRegistration(false);
+    };
+    const onSubmitHandler = () => {
+        const currentDate = new Date().valueOf();
+        const selectedDate = new Date(bYear, bMonth + 1, bDay).valueOf();
+        const atleast14 = new Date(1970 + 14, 0, 1).valueOf();
+        const moreThan70 = new Date(1970 + 70, 0, 1).valueOf();
+        let isValid = true;
+        if (
+            currentDate - selectedDate < atleast14 ||
+            currentDate - selectedDate > moreThan70
+        ) {
+            setDateError(
+                "It looks like you are using wrong info, please make sure you use your real date of birth"
+            );
+            isValid = false;
+        }
+        if (registrationData.gender === "") {
+            setGenderError("Please choose gender");
+            isValid = false;
+        }
+        if (!isValid) {
+            return;
+        }
+
+        registerSubmit();
+    };
     return (
         <div className='blur container'>
             <div className={"register_form"}>
@@ -72,7 +132,7 @@ const RegisterForm = () => {
                     <Formik
                         enableReinitialize
                         initialValues={registrationData}
-                        onSubmit={() => {}}
+                        onSubmit={onSubmitHandler}
                         validationSchema={registrationValidation}
                     >
                         {(formik) => (
@@ -102,6 +162,12 @@ const RegisterForm = () => {
                                     onChange={handleChange}
                                 />
                                 <div className='dateofbirth'>
+                                    {dateError && (
+                                        <div className='error_box'>
+                                            {dateError}
+                                        </div>
+                                    )}
+
                                     <span>
                                         Date Of Birth
                                         <i className='info_icon'></i>
@@ -143,6 +209,11 @@ const RegisterForm = () => {
                                     </div>
                                 </div>
                                 <div className='gender'>
+                                    {genderError && (
+                                        <div className='error_box'>
+                                            {genderError}
+                                        </div>
+                                    )}
                                     <span>
                                         Gender
                                         <i className='info_icon'></i>
@@ -186,6 +257,9 @@ const RegisterForm = () => {
                         )}
                     </Formik>
                 </div>
+                {loading && <DotLoader size={24} color='#1876f2' />}
+                {error && <div className='error_message'>{error}</div>}
+                {success && <div className='success_message'>{success}</div>}
             </div>
         </div>
     );
