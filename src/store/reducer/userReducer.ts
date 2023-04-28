@@ -1,6 +1,16 @@
-const userReducer = (state = null, action) => {
+import * as ActionType from "../action";
+import Cookies from "js-cookie";
+
+interface Action {
+    type: "LOGIN";
+    payload: UserResponse;
+}
+const userReducer = (
+    state = Cookies.get("user") ? JSON.parse(Cookies.get("user") || "") : null,
+    action: Action
+) => {
     switch (action.type) {
-        case "LOGIN":
+        case ActionType.LOGIN:
             return action.payload;
         default:
             return state;

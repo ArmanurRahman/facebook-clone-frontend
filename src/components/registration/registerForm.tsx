@@ -4,9 +4,11 @@ import "./style.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import DotLoader from "react-spinners/DotLoader";
-import axios, { AxiosResponse, AxiosError } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import * as ActionType from "../../store/action";
+import Cookies from "js-cookie";
 
 interface RegFormProps {
     setShowRegistration: (a: boolean) => void;
@@ -23,6 +25,7 @@ const initialRegistrationData = {
 };
 const RegisterForm: React.FC<RegFormProps> = ({ setShowRegistration }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [registrationData, setRegistrationData] = useState(
         initialRegistrationData
     );
@@ -75,8 +78,11 @@ const RegisterForm: React.FC<RegFormProps> = ({ setShowRegistration }) => {
                 registrationData
             );
             const { data } = response;
+            const { message, ...rest } = data;
+            dispatch({ type: ActionType.LOGIN, payload: rest });
+            Cookies.set("user", JSON.stringify(rest));
             setLoading(false);
-            setSuccess(data.message);
+            setSuccess(message);
             setError("");
             setTimeout(() => {
                 navigate("/");
