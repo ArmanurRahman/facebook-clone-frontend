@@ -1,13 +1,9 @@
 import * as ActionType from "../action";
 import Cookies from "js-cookie";
 
-interface Action {
-    type: "LOGIN";
-    payload: UserResponse;
-}
 const userReducer = (
     state = Cookies.get("user") ? JSON.parse(Cookies.get("user") || "") : null,
-    action: Action
+    action: any
 ) => {
     switch (action.type) {
         case ActionType.LOGIN:

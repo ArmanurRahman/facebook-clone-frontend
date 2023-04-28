@@ -6,11 +6,19 @@ import { useState } from "react";
 import * as Yup from "yup";
 import Footer from "../../components/inputs/login/footer";
 import RegisterForm from "../../components/registration/registerForm";
+import DotLoader from "react-spinners/DotLoader";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import * as ActionType from "../../store/action";
+import Cookies from "js-cookie";
 
 const Login = () => {
+    const dispatch = useDispatch();
     const [login, setLogin] = useState({ email: "", password: "" });
     const { email, password } = login;
     const [showRegistration, setShowRegistration] = useState(false);
+    const [error, setError] = useState<string | undefined>();
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleLoginChange = (e: React.ChangeEvent<any>) => {
         const { name, value } = e.target;
@@ -24,6 +32,27 @@ const Login = () => {
             .max(100),
         password: Yup.string().required("password is required").min(5).max(30),
     });
+
+    const loginHandler = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.post(
+                `${process.env.REACT_APP_BACKEND_URL}/user/login`,
+                {
+                    email,
+                    password,
+                }
+            );
+            const { data } = response;
+            setLoading(false);
+            setError("");
+            dispatch({ type: ActionType.LOGIN, payload: data });
+            Cookies.set("user", JSON.stringify(data));
+        } catch (error: any) {
+            setError(error.response.data.message);
+            setLoading(false);
+        }
+    };
     return (
         <div className='login'>
             <div className='login_wrapper'>
@@ -40,7 +69,7 @@ const Login = () => {
                             enableReinitialize
                             initialValues={{ email, password }}
                             validationSchema={loginValidation}
-                            onSubmit={() => {}}
+                            onSubmit={loginHandler}
                         >
                             {(formik) => (
                                 <Form className='form'>
@@ -76,6 +105,8 @@ const Login = () => {
                         >
                             Create Account
                         </button>
+                        {loading && <DotLoader size={24} color='#1876f2' />}
+                        {error && <div className='error_message'>{error}</div>}
                         <p>
                             <strong>Create a Page</strong> for a celebrity or
                             business
