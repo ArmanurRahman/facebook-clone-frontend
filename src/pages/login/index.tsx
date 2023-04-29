@@ -11,8 +11,10 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import * as ActionType from "../../store/action";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [login, setLogin] = useState({ email: "", password: "" });
     const { email, password } = login;
@@ -48,6 +50,7 @@ const Login = () => {
             setError("");
             dispatch({ type: ActionType.LOGIN, payload: data });
             Cookies.set("user", JSON.stringify(data));
+            navigate("/");
         } catch (error: any) {
             setError(error.response.data.message);
             setLoading(false);
