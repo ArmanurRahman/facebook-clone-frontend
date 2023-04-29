@@ -1,5 +1,6 @@
 import { RootState } from "../../store/reducer";
 import {
+    Friends,
     Gaming,
     Home,
     Logo,
@@ -15,28 +16,35 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
     const user = useSelector<RootState, UserResponse>((data) => data.user);
-    console.log(user);
+    const color = "#65676b";
     return (
         <div className='header'>
             <div className='header_left'>
                 <Logo />
                 <div className='header_search'>
                     <Search />
-                    <input type='input' />
+                    <input type='input' placeholder='Search in facebook' />
                 </div>
             </div>
             <div className='header_middle'>
                 <div className='icon hover1 active'>
-                    <Home />
+                    <Home color={color} />
                 </div>
                 <div className='icon hover1'>
-                    <Watch />
+                    <Friends color={color} />
                 </div>
                 <div className='icon hover1'>
-                    <Market />
+                    <Watch color={color} />
+                </div>
+
+                <div className='icon hover1'>
+                    <Market color={color} />
                 </div>
                 <div className='icon hover1'>
-                    <Gaming />
+                    <div className='icon_inner'>
+                        <span className='header_tag'>9+</span>
+                        <Gaming color={color} />
+                    </div>
                 </div>
             </div>
             <div className='header_right'>

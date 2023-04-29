@@ -1,14 +1,15 @@
 .header {
     position: fixed;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 2fr 1fr;
     width: 100%;
-    background-color: var(--bg-secondary);
-    box-shadow: 0px 1px 4px var(--bg-primary);
+    background-color: var(--bg-primary);
+    box-shadow: 1px 8px 15px -7px var(--shadow-2);
     padding: .5rem 1rem;
     column-gap: 2rem;
     align-items: center;
     justify-content: center;
+    color: var(--color-primary);
 }
 
 .header .header_left {
@@ -29,7 +30,7 @@
     width: 100%;
     max-width: 360px;
     border: none;
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-primary);
     outline: none;
     font-size: 1rem;
 }
@@ -40,17 +41,19 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    position: relative;
 }
 .header .header_middle {
+    width: 100%;
     justify-self: center;
     display: flex;
     align-items: center;
-    gap: .6rem;
+    justify-content: space-around;
 }
 
 .hover1:hover {
     background-color: var(--bg-third);
-    border-radius: 50%;
+    border-radius: 10px;
 }
 
 .header .header_right {
@@ -85,14 +88,28 @@
 }
 
 .header_middle .icon {
-    position: relative;
+    width: 100%;
 }
 .header .active::after {
     content: '';
     position: absolute;
     width: 100%;
-    height: 5px;
+    height: 3px;
     background-color: var(--blue-color);
     bottom: -5px;
 
+}
+
+.header .icon_inner {
+    position: relative;
+}
+.header_tag {
+    position: absolute;    
+    top: -6px;
+    right: -6px;
+    background-color: red;
+    color: #fff;
+    padding: 4px;
+    font-size: 10px;
+    border-radius: 100%;
 }
