@@ -9,13 +9,6 @@ const Home = () => {
     return (
         <div>
             <Header />
-            {visible && (
-                <div
-                    className='card'
-                    style={{ width: 300, height: 300, background: "red" }}
-                    ref={el}
-                ></div>
-            )}
         </div>
     );
 };

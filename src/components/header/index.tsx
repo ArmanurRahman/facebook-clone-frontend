@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { RootState } from "../../store/reducer";
 import {
     Friends,
@@ -11,11 +12,14 @@ import {
     Search,
     Watch,
 } from "../../svg";
+import SearchArea from "./searchArea";
 import "./style.css";
 import { useSelector } from "react-redux";
 
 const Header = () => {
     const user = useSelector<RootState, UserResponse>((data) => data.user);
+    const [showSearchArea, setShowSearchArea] = useState(false);
+
     const color = "#65676b";
     return (
         <div className='header'>
@@ -23,9 +27,17 @@ const Header = () => {
                 <Logo />
                 <div className='header_search'>
                     <Search />
-                    <input type='input' placeholder='Search in facebook' />
+                    <input
+                        type='input'
+                        placeholder='Search in facebook'
+                        onClick={() => setShowSearchArea(true)}
+                    />
                 </div>
             </div>
+            {showSearchArea && (
+                <SearchArea setShowSearchArea={setShowSearchArea} />
+            )}
+
             <div className='header_middle'>
                 <div className='icon hover1 active'>
                     <Home color={color} />
