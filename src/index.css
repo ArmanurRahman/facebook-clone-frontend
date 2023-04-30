@@ -88,3 +88,12 @@ a {
   color: var(--green-color);
   font-size: 12px;
 }
+
+.devider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--bg-third);
+}
+.active_icon{
+  background-color: var(--blue-color);
+}

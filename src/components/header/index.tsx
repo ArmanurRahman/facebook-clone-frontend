@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { RootState } from "../../store/reducer";
 import {
     Friends,
@@ -15,12 +15,16 @@ import {
 import SearchArea from "./searchArea";
 import "./style.css";
 import { useSelector } from "react-redux";
+import AllMenuArea from "./allMenuArea";
 
 const Header = () => {
     const user = useSelector<RootState, UserResponse>((data) => data.user);
     const [showSearchArea, setShowSearchArea] = useState(false);
+    const [showAllMenu, setShowAllMenu] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
 
     const color = "#65676b";
+    const activeColor = "#1876f2";
     return (
         <div className='header'>
             <div className='header_left'>
@@ -59,9 +63,14 @@ const Header = () => {
                     </div>
                 </div>
             </div>
+
             <div className='header_right'>
-                <div className='icon'>
-                    <Menu />
+                <div
+                    className='icon'
+                    onClick={() => setShowAllMenu((prevState) => !prevState)}
+                    ref={menuRef}
+                >
+                    <Menu color={showAllMenu ? activeColor : ""} />
                 </div>
                 <div className='icon'>
                     <Messenger />
@@ -79,6 +88,9 @@ const Header = () => {
                     />
                 </div>
             </div>
+            {showAllMenu && (
+                <AllMenuArea setShowAllMenu={setShowAllMenu} ref={menuRef} />
+            )}
         </div>
     );
 };

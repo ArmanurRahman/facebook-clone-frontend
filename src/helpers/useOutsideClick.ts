@@ -1,9 +1,12 @@
 import { useEffect } from "react";
 
-const useOutsideClick = (ref: any, func: () => void) => {
+const useOutsideClick = (ref: any, func: () => void, altEl: any = null) => {
     useEffect(() => {
         const listener = (e: Event) => {
             if (!ref.current || ref.current.contains(e.target)) {
+                return;
+            }
+            if (altEl && altEl.current.contains(e.target)) {
                 return;
             }
             func();
