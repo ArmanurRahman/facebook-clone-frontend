@@ -16,12 +16,21 @@ import SearchArea from "./searchArea";
 import "./style.css";
 import { useSelector } from "react-redux";
 import AllMenuArea from "./allMenuArea";
+import UserMenu from "./userMenu";
+import SettingPrivacy from "./userMenu/SettingPrivacy";
+import DisplayAndAccessiblity from "./userMenu/DisplayAccessiblity";
+import useOutsideClick from "../../helpers/useOutsideClick";
 
 const Header = () => {
     const user = useSelector<RootState, UserResponse>((data) => data.user);
     const [showSearchArea, setShowSearchArea] = useState(false);
     const [showAllMenu, setShowAllMenu] = useState(false);
+    const [userMenu, setUserMenu] = useState(0);
     const menuRef = useRef<HTMLDivElement>(null);
+    const accountRef = useRef<HTMLDivElement>(null);
+    const userMenuRef = useRef<HTMLDivElement>(null);
+
+    useOutsideClick(userMenuRef, () => setUserMenu(0), accountRef);
 
     const color = "#65676b";
     const activeColor = "#1876f2";
@@ -78,19 +87,42 @@ const Header = () => {
                 <div className='icon'>
                     <Notifications />
                 </div>
-                <div className='account'>
+                <div
+                    className='account'
+                    onClick={() =>
+                        setUserMenu((prevState) => (prevState ? 0 : 1))
+                    }
+                    ref={accountRef}
+                >
                     <img
                         src={user.picture}
                         alt='user_photo'
-                        className='account_photo'
+                        className={`account_photo ${
+                            userMenu ? "header_account_active" : ""
+                        }`}
                         width={30}
                         height={30}
                     />
                 </div>
             </div>
+
             {showAllMenu && (
                 <AllMenuArea setShowAllMenu={setShowAllMenu} ref={menuRef} />
             )}
+            <div ref={userMenuRef}>
+                {userMenu === 1 && (
+                    <UserMenu
+                        picture={user.picture}
+                        firstName={user.firstName}
+                        lastName={user.lastName}
+                        setUserMenu={setUserMenu}
+                    />
+                )}
+                {userMenu === 2 && <SettingPrivacy setUserMenu={setUserMenu} />}
+                {userMenu === 3 && (
+                    <DisplayAndAccessiblity setUserMenu={setUserMenu} />
+                )}
+            </div>
         </div>
     );
 };
