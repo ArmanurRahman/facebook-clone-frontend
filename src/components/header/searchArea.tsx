@@ -25,7 +25,7 @@ const SearchArea: React.FC<Props> = ({ setShowSearchArea }) => {
                 >
                     <Return color={color} />
                 </div>
-                <div className='header_search'>
+                <div className='search_area_header_search'>
                     {showSearchIcon && <Search color={color} />}
                     <input
                         type='input'

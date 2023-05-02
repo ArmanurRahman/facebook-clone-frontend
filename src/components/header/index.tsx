@@ -37,14 +37,15 @@ const Header = () => {
     return (
         <div className='header'>
             <div className='header_left'>
-                <Logo />
-                <div className='header_search'>
+                <div className='header_left_logo'>
+                    <Logo />
+                </div>
+                <div
+                    className='header_search'
+                    onClick={() => setShowSearchArea(true)}
+                >
                     <Search />
-                    <input
-                        type='input'
-                        placeholder='Search in facebook'
-                        onClick={() => setShowSearchArea(true)}
-                    />
+                    <input type='input' placeholder='Search in facebook' />
                 </div>
             </div>
             {showSearchArea && (

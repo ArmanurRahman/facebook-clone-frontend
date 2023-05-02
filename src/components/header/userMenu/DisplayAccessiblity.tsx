@@ -43,6 +43,7 @@ const DisplayAndAccessiblity: React.FC<Props> = ({ setUserMenu }) => {
                                     id='darkOff'
                                     name='darkMode'
                                     value='Off'
+                                    checked
                                 />
                             </label>
                             <label
@@ -83,6 +84,7 @@ const DisplayAndAccessiblity: React.FC<Props> = ({ setUserMenu }) => {
                                     id='compactOff'
                                     name='compactMode'
                                     value='Off'
+                                    checked
                                 />
                             </label>
                             <label

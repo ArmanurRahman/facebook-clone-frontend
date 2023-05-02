@@ -18,7 +18,7 @@ const useOutsideClick = (ref: any, func: () => void, altEl: any = null) => {
             document.removeEventListener("mousedown", listener);
             document.removeEventListener("touchstart", listener);
         };
-    }, [ref]);
+    }, [ref, func, altEl]);
 };
 
 export default useOutsideClick;
