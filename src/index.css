@@ -97,3 +97,7 @@ a {
 .active_icon{
   background-color: var(--blue-color);
 }
+
+.rotate360 {
+  transform: rotateX(180deg);
+}

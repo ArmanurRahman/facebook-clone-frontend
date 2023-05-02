@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import Header from "../../components/header";
 import useOutsideClick from "../../helpers/useOutsideClick";
+import HomeComponent from "../../components/home";
 
 const Home = () => {
     const el = useRef(null);
@@ -9,6 +10,7 @@ const Home = () => {
     return (
         <div>
             <Header />
+            <HomeComponent />
         </div>
     );
 };

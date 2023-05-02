@@ -10,7 +10,7 @@ interface UserResponse {
     bDay: string;
     token?: string;
     message?: string;
-    picture?: string;
+    picture: string;
 }
 
 interface SvgIconProps {
