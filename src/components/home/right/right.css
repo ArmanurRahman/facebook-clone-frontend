@@ -1,0 +1,40 @@
+.home_right_container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--color-secondary);
+    font-size: 14px;
+    padding: .5rem;
+}
+
+.home_right_container_head_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.home_right_container_head_action {
+    display: flex;
+    gap: .5rem;
+}
+.home_right_container_head_action svg{
+    cursor: pointer;
+}
+.home_right_profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+.home_right_profile_picture {
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden;
+}
+.home_right_profile_picture img{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
