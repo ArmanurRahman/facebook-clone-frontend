@@ -1,7 +1,7 @@
 import { Plus } from "../../../../svg";
 import "../style.css";
 import { stories } from "../../../../data/home";
-
+import { useMediaQuery } from "react-responsive";
 interface AddStoryProps {
     picture: string;
 }
@@ -43,7 +43,16 @@ interface Props {
     picture: string;
 }
 const Stories: React.FC<Props> = ({ picture }) => {
-    const storyNumber = 5;
+    const query950px = useMediaQuery({
+        query: "(max-width: 900px)",
+    });
+    const query700px = useMediaQuery({
+        query: "(max-width: 700px)",
+    });
+    const query450px = useMediaQuery({
+        query: "(max-width: 500px)",
+    });
+    const storyNumber = query450px ? 4 : query700px ? 5 : query950px ? 6 : 5;
     return (
         <div className='story_container'>
             <AddStory picture={picture} />

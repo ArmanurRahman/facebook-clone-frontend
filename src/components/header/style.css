@@ -150,6 +150,7 @@
     max-width: 360px;
     gap: 1rem;
     width: 295px;
+    z-index: 1;
 }
 
 .search_input {

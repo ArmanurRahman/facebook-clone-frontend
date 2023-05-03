@@ -73,3 +73,23 @@
     background-color: var(--blue-color);
     border-radius: 100%;
 }
+
+@media (max-width: 900px) {
+    .home_left_container {
+        max-width: 250px;
+    }
+}
+@media (max-width: 800px) {
+    .home_left_container {
+        width: 80px;
+    }
+    .home_left_profile_name {
+        display: none;
+    }
+    .home_left_icon_details_name {
+        display: none;
+    }
+    .home_left_icon_details_notification {
+        display: none;
+    }
+}

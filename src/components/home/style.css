@@ -8,3 +8,19 @@
     height: auto;
     z-index: -1;
 }
+
+@media (max-width: 900px) {
+    .home_container {
+        grid-template-columns: 1fr 3fr;
+    }
+}
+@media (max-width: 800px) {
+    .home_container {
+        grid-template-columns: 80px auto;
+    }
+}
+@media (max-width: 485px) {
+    .home_container {
+        grid-template-columns: 100%;
+    }
+}
