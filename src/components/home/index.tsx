@@ -3,6 +3,7 @@ import LeftHome from "./left/Left";
 import "./style.css";
 import { RootState } from "../../store/reducer";
 import RightHome from "./right/right";
+import HomeMiddle from "./middle";
 
 const Home = () => {
     const user = useSelector<RootState, UserResponse>((state) => state.user);
@@ -13,7 +14,7 @@ const Home = () => {
                 firstName={user.firstName}
                 lastName={user.lastName}
             />
-            <div></div>
+            <HomeMiddle picture={user.picture} />
             <RightHome />
         </div>
     );

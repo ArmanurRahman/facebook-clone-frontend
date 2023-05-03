@@ -1,5 +1,5 @@
 .home_left_container {
-    background-color: var(--bg-primary);
+    background-color: var(--bg-secondary);
     max-width: 300px;
     display: flex;
     flex-direction: column;
