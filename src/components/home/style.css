@@ -6,4 +6,5 @@
     grid-template-columns: 1fr 2fr 1fr;
     background-color: var(--bg-secondary);
     height: auto;
+    z-index: -1;
 }
