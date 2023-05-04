@@ -1,19 +1,27 @@
-import { forwardRef, useRef } from "react";
-import useOutsideClick from "../../../helpers/useOutsideClick";
+import { useRef } from "react";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import * as actionType from "../../../store/action";
+import { useNavigate } from "react-router-dom";
 
 interface UserMenuProps {
     picture: string | undefined;
     firstName: string;
     lastName: string;
     setUserMenu: (a: number) => void;
-    // ref: any;
 }
 
 const UserMenu: React.FC<UserMenuProps> = (props) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { picture, firstName, lastName, setUserMenu } = props;
     const userMenuRef = useRef<HTMLDivElement>(null);
 
-    // useOutsideClick(userMenuRef, () => setUserMenu(0), ref);
+    const logoutHandler = () => {
+        dispatch({ type: actionType.LOGOUT });
+        Cookies.set("user", "");
+        navigate("/login");
+    };
     return (
         <div className='user_menu_wrapper' ref={userMenuRef}>
             <div className='user_menu_profile'>
@@ -74,7 +82,7 @@ const UserMenu: React.FC<UserMenuProps> = (props) => {
                     <div className='right_icon'></div>
                 </div>
             </div>
-            <div className='user_menu_option'>
+            <div className='user_menu_option' onClick={logoutHandler}>
                 <div className='user_menu_icon'>
                     <i className='logout_filled_icon'></i>
                 </div>

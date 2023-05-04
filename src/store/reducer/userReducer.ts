@@ -10,6 +10,8 @@ const userReducer = (
             return action.payload;
         case ActionType.VERIFIED:
             return { ...state, verified: action.payload };
+        case ActionType.LOGOUT:
+            return null;
         default:
             return state;
     }
