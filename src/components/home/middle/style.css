@@ -114,3 +114,22 @@
         width: 17vw;
     }
 }
+
+.verify_warning_container {
+    background-color: var(--bg-primary);
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 12px;
+}
+
+.verification_warning_message {
+    font-size: 12px;
+}
+
+.resend_verification {
+    text-decoration: underline;
+    color: var(--blue-color);
+    cursor: pointer;
+}

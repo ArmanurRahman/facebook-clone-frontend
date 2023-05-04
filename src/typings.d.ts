@@ -11,6 +11,7 @@ interface UserResponse {
     token?: string;
     message?: string;
     picture: string;
+    verified?: boolean;
 }
 
 interface SvgIconProps {
