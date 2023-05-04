@@ -49,6 +49,10 @@ a {
   width: 100%;
 }
 
+.btn-grey {
+  background-color: var(--bg-secondary);
+  color: var(--color-secondary);
+}
 .blur {
   position: fixed;
   top: 0;

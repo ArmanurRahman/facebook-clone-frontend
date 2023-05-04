@@ -5,6 +5,7 @@ import Profile from "./pages/profile";
 import LoggedInRoute from "./routes/loggedInRoute";
 import NotLoggedInRoute from "./routes/NotLoggedInRoute";
 import Active from "./pages/home/active";
+import Reset from "./components/user/reset";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
             <Route element={<NotLoggedInRoute />}>
                 <Route path='/login' element={<Login />} />
             </Route>
+            <Route path='/forgot' element={<Reset />} />
         </Routes>
     );
 }

@@ -8,6 +8,7 @@ interface OtherInputProps {
     type: string;
     name: string;
     bottom?: boolean;
+    value?: string;
 }
 
 type InputType = InputHTMLAttributes<HTMLInputElement> &
