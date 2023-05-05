@@ -49,13 +49,24 @@ const VerifyWarning = () => {
 interface Props {
     picture: string;
     verified: boolean | undefined;
+    firstName: string;
+    lastName: string;
 }
-const HomeMiddle: React.FC<Props> = ({ picture, verified }) => {
+const HomeMiddle: React.FC<Props> = ({
+    picture,
+    verified,
+    firstName,
+    lastName,
+}) => {
     return (
         <div className='home_middle_container'>
             <Stories picture={picture} />
             {!verified && <VerifyWarning />}
-            <HomePost picture={picture} />
+            <HomePost
+                picture={picture}
+                firstName={firstName}
+                lastName={lastName}
+            />
         </div>
     );
 };

@@ -1,0 +1,95 @@
+.post_popup_container {
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    background-color: var(--bg-primary);
+    padding: 1rem;
+    box-shadow: 0 12px 20px 0 var(--shadow-1), 0 2px 4px 0 var(--shadow-2), inset 0 0 0 1px var(--shadow-inset);
+    /* height: 400px; */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.post_popup_user_section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.post_popup_user_section img {
+    width: 40px;
+    border-radius: 100%;
+}
+.post_popup_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.post_popup_title p {
+    font-weight: bold;
+}
+
+.post_popup_access {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    background-color: var(--bg-third);
+    padding: 4px;
+    justify-content: center;
+    border-radius: 5px;
+}
+.post_popup_access img{
+    width: 12px;
+}
+.post_popup_access p {
+    font-size: 12px;
+}
+.post_popup_user_name {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.post_popup_body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.post_popup_body textarea {
+    width: 100%;
+    height: 100px;
+    border: none;
+    padding: .5rem;
+}
+.post_popup_text_area textarea:focus-visible {
+    border: none;
+    outline: none;
+}
+
+.post_popup_input_action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.post_popup_input_action img {
+    width: 30px;
+    cursor: pointer;
+}
+
+.post_popup_input_action i:hover{
+    filter: invert(80%);
+}
+.post_popup_emoji_picker {
+    position: absolute;
+    left: 60%;
+    bottom:30px
+}

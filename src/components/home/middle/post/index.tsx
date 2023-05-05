@@ -1,17 +1,26 @@
+import { useState } from "react";
 import { Feeling, LiveVideo, Photo } from "../../../../svg";
 import "./style.css";
+import PostPopup from "./popup";
 
 interface Props {
     picture: string;
+    firstName: string;
+    lastName: string;
 }
-const HomePost: React.FC<Props> = ({ picture }) => {
+const HomePost: React.FC<Props> = ({ picture, firstName, lastName }) => {
+    const [showPostPopup, setShowPostPopup] = useState(false);
     return (
         <div className='home_post_container'>
             <div className='home_post'>
                 <div className='home_post_picture'>
                     <img src={picture} alt='profile_picture' />
                     <div className='home_post_input'>
-                        <input type='text' placeholder="What's on your mind?" />
+                        <input
+                            type='text'
+                            placeholder="What's on your mind?"
+                            onClick={() => setShowPostPopup(true)}
+                        />
                     </div>
                 </div>
                 <div className='devider2'></div>
@@ -30,6 +39,13 @@ const HomePost: React.FC<Props> = ({ picture }) => {
                     </div>
                 </div>
             </div>
+            {showPostPopup && (
+                <PostPopup
+                    picture={picture}
+                    firstName={firstName}
+                    lastName={lastName}
+                />
+            )}
         </div>
     );
 };

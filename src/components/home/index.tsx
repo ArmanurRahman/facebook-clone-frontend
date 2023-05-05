@@ -24,7 +24,12 @@ const Home = () => {
                 />
             )}
 
-            <HomeMiddle picture={user.picture} verified={user.verified} />
+            <HomeMiddle
+                picture={user.picture}
+                verified={user.verified}
+                firstName={user.firstName}
+                lastName={user.lastName}
+            />
             {!query950px && <RightHome />}
         </div>
     );
