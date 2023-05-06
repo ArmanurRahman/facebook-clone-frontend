@@ -3,11 +3,17 @@ import Picker, { EmojiClickData } from "emoji-picker-react";
 
 interface Props {
     firstName: string;
+    status: string;
+    setStatus: (a: string) => void;
+    isAddingImage?: boolean;
 }
-const EmojiPickerBackground: React.FC<Props> = ({ firstName }) => {
-    const [postPreview, setPostPreview] = useState(false);
+const EmojiPickerBackground: React.FC<Props> = ({
+    firstName,
+    status,
+    setStatus,
+    isAddingImage,
+}) => {
     const [showEmoji, setShowEmoji] = useState(false);
-    const [status, setStatus] = useState("");
 
     const statusRef = useRef<HTMLTextAreaElement>(null);
     const [currentCursor, setCurrentCursor] = useState(0);
@@ -30,8 +36,16 @@ const EmojiPickerBackground: React.FC<Props> = ({ firstName }) => {
     };
 
     return (
-        <div>
-            <div className='post_popup_text_area'>
+        <div
+            className={`${
+                isAddingImage ? "post_popup_input_area_image_only" : ""
+            }`}
+        >
+            <div
+                className={`post_popup_text_area ${
+                    isAddingImage ? "post_popup_text_area_image_only" : ""
+                }`}
+            >
                 <textarea
                     placeholder={`What is on your mind ${firstName}?`}
                     value={status}
@@ -39,9 +53,12 @@ const EmojiPickerBackground: React.FC<Props> = ({ firstName }) => {
                     ref={statusRef}
                 ></textarea>
             </div>
-            {postPreview && <div className='post_popup_text_preview'></div>}
+
             <div className='post_popup_input_action'>
-                <img src='../../../icons/colorful.png' alt='' />
+                {!isAddingImage && (
+                    <img src='../../../icons/colorful.png' alt='' />
+                )}
+
                 <i
                     className='emoji_icon_large'
                     onClick={() => setShowEmoji((prevState) => !prevState)}

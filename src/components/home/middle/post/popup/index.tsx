@@ -1,6 +1,8 @@
 import "./style.css";
 import EmojiPickerBackground from "./emojiPickerBackground";
 import AddToPost from "./addToPost";
+import { useState } from "react";
+import ImagePreview from "./imagePreview";
 
 interface Props {
     picture: string;
@@ -8,6 +10,8 @@ interface Props {
     lastName: string;
 }
 const PostPopup: React.FC<Props> = ({ picture, firstName, lastName }) => {
+    const [postPreview, setPostPreview] = useState(true);
+    const [status, setStatus] = useState("");
     return (
         <div className=' blur'>
             <div className='post_popup_container'>
@@ -33,7 +37,19 @@ const PostPopup: React.FC<Props> = ({ picture, firstName, lastName }) => {
                         </div>
                     </div>
 
-                    <EmojiPickerBackground firstName={firstName} />
+                    {!postPreview ? (
+                        <EmojiPickerBackground
+                            firstName={firstName}
+                            status={status}
+                            setStatus={setStatus}
+                        />
+                    ) : (
+                        <ImagePreview
+                            firstName={firstName}
+                            status={status}
+                            setStatus={setStatus}
+                        />
+                    )}
                     <AddToPost />
                     <button className='btn btn-blue'>Post</button>
                 </div>
