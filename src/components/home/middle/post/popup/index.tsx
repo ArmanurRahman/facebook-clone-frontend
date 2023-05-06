@@ -1,5 +1,6 @@
 import "./style.css";
 import EmojiPickerBackground from "./emojiPickerBackground";
+import AddToPost from "./addToPost";
 
 interface Props {
     picture: string;
@@ -33,6 +34,8 @@ const PostPopup: React.FC<Props> = ({ picture, firstName, lastName }) => {
                     </div>
 
                     <EmojiPickerBackground firstName={firstName} />
+                    <AddToPost />
+                    <button className='btn btn-blue'>Post</button>
                 </div>
             </div>
         </div>

@@ -93,3 +93,22 @@
     left: 60%;
     bottom:30px
 }
+
+.add_to_post {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--bg-third);
+    padding: .5rem;
+    gap: .5rem;
+    border-radius: 5px;
+}
+
+.add_to_post_title {
+    font-size: 14px;
+    flex: 1;
+}
+
+.add_to_post i,
+.add_to_post svg {
+    cursor: pointer;
+}
