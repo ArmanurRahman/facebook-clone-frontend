@@ -1,10 +1,16 @@
 import { Dots, Feeling, Photo } from "../../../../../svg";
 
-const AddToPost = () => {
+interface Props {
+    setPostPreview: (a: boolean) => void;
+}
+const AddToPost: React.FC<Props> = ({ setPostPreview }) => {
     return (
         <div className='add_to_post'>
             <div className='add_to_post_title'>Add to your post</div>
-            <div className='add_to_post_icon '>
+            <div
+                className='add_to_post_icon '
+                onClick={() => setPostPreview(true)}
+            >
                 <Photo color={"#45bd62"} />
             </div>
             <div className='add_to_post_icon'>

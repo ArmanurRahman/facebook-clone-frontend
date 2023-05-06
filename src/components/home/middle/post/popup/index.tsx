@@ -10,8 +10,9 @@ interface Props {
     lastName: string;
 }
 const PostPopup: React.FC<Props> = ({ picture, firstName, lastName }) => {
-    const [postPreview, setPostPreview] = useState(true);
+    const [postPreview, setPostPreview] = useState(false);
     const [status, setStatus] = useState("");
+    const [images, setImages] = useState([]);
     return (
         <div className=' blur'>
             <div className='post_popup_container'>
@@ -48,9 +49,12 @@ const PostPopup: React.FC<Props> = ({ picture, firstName, lastName }) => {
                             firstName={firstName}
                             status={status}
                             setStatus={setStatus}
+                            setImages={setImages}
+                            images={images}
+                            setPostPreview={setPostPreview}
                         />
                     )}
-                    <AddToPost />
+                    <AddToPost setPostPreview={setPostPreview} />
                     <button className='btn btn-blue'>Post</button>
                 </div>
             </div>
