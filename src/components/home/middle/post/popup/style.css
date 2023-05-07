@@ -64,10 +64,12 @@
 
 .post_popup_body textarea {
     width: 100%;
-    height: 100px;
+    height: 150px;
     border: none;
     padding: .5rem;
+    background: transparent;
 }
+
 .post_popup_text_area textarea:focus-visible {
     border: none;
     outline: none;
@@ -78,13 +80,36 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
+    margin-top: .5rem;
 }
 
 .post_popup_input_action img {
     width: 30px;
     cursor: pointer;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
+.bg_handler {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.bg_handler textarea{
+    text-align: center;
+    background-color: red;
+    height: 250px;
+}
+
+.post_popup_input_action_none {
+    width: 30px;
+    height: 30px;
+    background-color: var(--bg-third);
+    border-radius: 5px;
+    cursor: pointer;
+}
 .post_popup_input_action i:hover{
     filter: invert(80%);
 }
@@ -320,4 +345,10 @@
 }
 .preview_odd img:nth-child(1) {
     grid-column: 1/3;
+}
+
+.bg_container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
