@@ -25,7 +25,7 @@ const EmojiPickerBackground: React.FC<Props> = ({
     isAddingImage,
 }) => {
     const [showEmoji, setShowEmoji] = useState(false);
-    const [showBGs, setShowBGs] = useState(false);
+    const [showBGs, setShowBGs] = useState<string | boolean>(false);
     const statusRef = useRef<HTMLTextAreaElement>(null);
     const [currentCursor, setCurrentCursor] = useState(0);
     const bgRef = useRef<HTMLDivElement>(null);
@@ -51,6 +51,14 @@ const EmojiPickerBackground: React.FC<Props> = ({
         if (bgRef.current?.style) {
             bgRef.current.style.backgroundImage = `url(${postBackgroundImages[i]})`;
             bgRef.current.classList.add("bg_handler");
+            setShowBGs(postBackgroundImages[i]);
+        }
+    };
+
+    const nobgHandler = () => {
+        if (bgRef.current?.style) {
+            bgRef.current.style.backgroundImage = "";
+            setShowBGs(false);
         }
     };
     return (
@@ -75,7 +83,8 @@ const EmojiPickerBackground: React.FC<Props> = ({
                         paddingTop:
                             showBGs && statusRef.current?.value
                                 ? Math.abs(
-                                      statusRef.current?.value.length * 0.1 - 30
+                                      statusRef.current?.value.length * 0.3 -
+                                          100
                                   )
                                 : "",
                     }}
@@ -93,7 +102,7 @@ const EmojiPickerBackground: React.FC<Props> = ({
                 {!isAddingImage && showBGs && (
                     <div
                         className='post_popup_input_action_none'
-                        onClick={() => setShowBGs(false)}
+                        onClick={nobgHandler}
                     ></div>
                 )}
                 {!isAddingImage && showBGs && (
