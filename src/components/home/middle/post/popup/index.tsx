@@ -108,6 +108,17 @@ const PostPopup: React.FC<Props> = ({
                         )}
                     </button>
                 </div>
+                {error && (
+                    <div className='post_error_container'>
+                        <p>{error}</p>
+                        <button
+                            className='btn btn-blue'
+                            onClick={() => setError("")}
+                        >
+                            Try again
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -354,3 +354,34 @@
     align-items: center;
     gap: 5px;
 }
+
+.post_error_container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: var(--bg-primary);
+    opacity: .8;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    animation: errorAmin .3s;
+}
+
+@keyframes errorAmin {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+.post_error_container p {
+    font-weight: bold;
+    color: var(--error-color);
+}
+.post_error_container button{
+    width: 80px;
+}

@@ -11,7 +11,7 @@ export const createPost = async (
     token?: string
 ) => {
     try {
-        const { data } = await axios.post(
+        await axios.post(
             `${process.env.REACT_APP_BACKEND_URL}/createPost`,
             {
                 type,
