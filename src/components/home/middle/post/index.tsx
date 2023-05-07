@@ -7,8 +7,16 @@ interface Props {
     picture: string;
     firstName: string;
     lastName: string;
+    userId: string;
+    token?: string;
 }
-const HomePost: React.FC<Props> = ({ picture, firstName, lastName }) => {
+const HomePost: React.FC<Props> = ({
+    picture,
+    firstName,
+    lastName,
+    userId,
+    token,
+}) => {
     const [showPostPopup, setShowPostPopup] = useState(false);
     return (
         <div className='home_post_container'>
@@ -44,6 +52,9 @@ const HomePost: React.FC<Props> = ({ picture, firstName, lastName }) => {
                     picture={picture}
                     firstName={firstName}
                     lastName={lastName}
+                    setShowPostPopup={setShowPostPopup}
+                    userId={userId}
+                    token={token}
                 />
             )}
         </div>

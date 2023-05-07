@@ -29,6 +29,8 @@ const Home = () => {
                 verified={user.verified}
                 firstName={user.firstName}
                 lastName={user.lastName}
+                userId={user.id}
+                token={user.token}
             />
             {!query950px && <RightHome />}
         </div>

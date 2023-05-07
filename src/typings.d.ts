@@ -1,6 +1,7 @@
 declare module "*.module.css";
 
 interface UserResponse {
+    id: string;
     firstName: string;
     lastName: string;
     email: string;
