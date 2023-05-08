@@ -6,6 +6,8 @@ import ImagePreview from "./imagePreview";
 import useOutsideClick from "../../../../../helpers/useOutsideClick";
 import PulseLoader from "react-spinners/PulseLoader";
 import { createPost } from "../../../../../function/post";
+import dataURItoBlob from "../../../../../helpers/dataURItoBlob";
+import uploadImages from "../../../../../function/uploadImages";
 
 interface Props {
     picture: string;
@@ -14,6 +16,7 @@ interface Props {
     setShowPostPopup: (a: boolean) => void;
     userId: string;
     token?: string;
+    userName: string;
 }
 const PostPopup: React.FC<Props> = ({
     picture,
@@ -22,6 +25,7 @@ const PostPopup: React.FC<Props> = ({
     setShowPostPopup,
     userId,
     token,
+    userName,
 }) => {
     const [postPreview, setPostPreview] = useState(false);
     const [status, setStatus] = useState("");
@@ -48,6 +52,48 @@ const PostPopup: React.FC<Props> = ({
             if (res !== "ok") {
                 setError(res);
             } else {
+                setStatus("");
+                setBackground("");
+                setShowPostPopup(false);
+            }
+        } else if (images && images.length > 0) {
+            const postImages = images.map((image) => dataURItoBlob(image));
+            const path = `${userName}/post images`;
+            const formData = new FormData();
+            formData.append("path", path);
+            postImages.forEach((img) => {
+                formData.append("files", img);
+            });
+            const imgResponse = await uploadImages(formData, token);
+            const postRes = await createPost(
+                null,
+                "",
+                status,
+                imgResponse,
+                userId,
+                token
+            );
+            if (postRes !== "ok") {
+                setError(postRes);
+            } else {
+                setStatus("");
+                setBackground("");
+                setShowPostPopup(false);
+            }
+        } else if (status) {
+            const postRes = await createPost(
+                null,
+                "",
+                status,
+                null,
+                userId,
+                token
+            );
+            if (postRes !== "ok") {
+                setError(postRes);
+            } else {
+                setStatus("");
+                setBackground("");
                 setShowPostPopup(false);
             }
         }

@@ -53,6 +53,7 @@ interface Props {
     lastName: string;
     userId: string;
     token?: string;
+    userName: string;
 }
 const HomeMiddle: React.FC<Props> = ({
     picture,
@@ -61,6 +62,7 @@ const HomeMiddle: React.FC<Props> = ({
     lastName,
     userId,
     token,
+    userName,
 }) => {
     return (
         <div className='home_middle_container'>
@@ -72,6 +74,7 @@ const HomeMiddle: React.FC<Props> = ({
                 lastName={lastName}
                 userId={userId}
                 token={token}
+                userName={userName}
             />
         </div>
     );
