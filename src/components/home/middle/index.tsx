@@ -4,6 +4,7 @@ import Stories from "./stories";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/reducer";
 import axios from "axios";
+import Post from "../../post";
 
 const VerifyWarning = () => {
     const [success, setSuccess] = useState("");
@@ -54,6 +55,7 @@ interface Props {
     userId: string;
     token?: string;
     userName: string;
+    posts: Array<Post>;
 }
 const HomeMiddle: React.FC<Props> = ({
     picture,
@@ -63,6 +65,7 @@ const HomeMiddle: React.FC<Props> = ({
     userId,
     token,
     userName,
+    posts,
 }) => {
     return (
         <div className='home_middle_container'>
@@ -76,6 +79,11 @@ const HomeMiddle: React.FC<Props> = ({
                 token={token}
                 userName={userName}
             />
+            <div className='post_container'>
+                {posts.map((post) => (
+                    <Post post={post} key={post._id} />
+                ))}
+            </div>
         </div>
     );
 };

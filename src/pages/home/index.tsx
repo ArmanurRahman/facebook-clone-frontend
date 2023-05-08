@@ -78,7 +78,7 @@ const Home = () => {
     return (
         <div>
             <Header />
-            <HomeComponent />
+            <HomeComponent posts={posts} />
         </div>
     );
 };

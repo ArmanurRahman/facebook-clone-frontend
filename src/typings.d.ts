@@ -25,12 +25,21 @@ interface Comment {
     commentedBy: string;
     commentedAt: string;
 }
-interface Post {
+
+interface User1 {
     id: string;
+    firstName: string;
+    lastName: string;
+    userName: string;
+    gender: "male" | "female";
+    picture: string;
+}
+interface Post {
+    _id: string;
     type: "profilePicture" | "cover" | null;
     text?: string;
     images?: Array<String>;
-    user: string;
+    user: User1;
     background?: string;
     comments?: any;
 }

@@ -6,7 +6,11 @@ import RightHome from "./right/right";
 import HomeMiddle from "./middle";
 import { useMediaQuery } from "react-responsive";
 
-const Home = () => {
+interface Props {
+    posts: Array<Post>;
+}
+
+const Home: React.FC<Props> = ({ posts }) => {
     const user = useSelector<RootState, UserResponse>((state) => state.user);
     const query950px = useMediaQuery({
         query: "(max-width: 900px)",
@@ -32,6 +36,7 @@ const Home = () => {
                 userId={user.id}
                 token={user.token}
                 userName={user.userName}
+                posts={posts}
             />
             {!query950px && <RightHome />}
         </div>
