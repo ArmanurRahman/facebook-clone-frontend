@@ -1,5 +1,9 @@
 import { ChangeEventHandler, useRef } from "react";
 import EmojiPickerBackground from "./emojiPickerBackground";
+import {
+    MAX_FILE_SIZE,
+    SUPPORTED_IMAGE_FORMAT,
+} from "../../../../../constants/constant";
 
 interface Props {
     firstName: string;
@@ -8,6 +12,7 @@ interface Props {
     setImages: (a: any) => void;
     images: any;
     setPostPreview: (a: boolean) => void;
+    setError: (a: string) => void;
 }
 
 const ImagePreview: React.FC<Props> = ({
@@ -17,6 +22,7 @@ const ImagePreview: React.FC<Props> = ({
     setImages,
     images,
     setPostPreview,
+    setError,
 }) => {
     const imageInputRef = useRef<HTMLInputElement>(null);
     const handleInput: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -25,6 +31,18 @@ const ImagePreview: React.FC<Props> = ({
         if (tempFiles) {
             let files = Array.from(tempFiles);
             files.forEach((img) => {
+                if (!SUPPORTED_IMAGE_FORMAT.includes(img.type)) {
+                    setError(
+                        `${img.name} format is not supported, supported formats are png, jpeg, webp, gif`
+                    );
+                    files = files.filter((file) => file.name !== img.name);
+                    return;
+                }
+                if (img.size > MAX_FILE_SIZE) {
+                    setError(`${img.name} file too big`);
+                    files = files.filter((file) => file.name !== img.name);
+                    return;
+                }
                 const imageReader = new FileReader();
                 imageReader.readAsDataURL(img);
                 imageReader.onload = (readerEvent) => {
@@ -41,6 +59,7 @@ const ImagePreview: React.FC<Props> = ({
             <input
                 type='file'
                 ref={imageInputRef}
+                accept='image/jpeg,image/png,image/gif,image.webp'
                 hidden
                 multiple
                 onChange={handleInput}

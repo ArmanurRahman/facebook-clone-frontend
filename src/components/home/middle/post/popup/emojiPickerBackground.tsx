@@ -17,8 +17,8 @@ interface Props {
     status: string;
     setStatus: (a: string) => void;
     isAddingImage?: boolean;
-    background: string;
-    setBackground: (a: string) => void;
+    background?: string;
+    setBackground?: (a: string) => void;
 }
 const EmojiPickerBackground: React.FC<Props> = ({
     firstName,
@@ -56,7 +56,9 @@ const EmojiPickerBackground: React.FC<Props> = ({
             bgRef.current.style.backgroundImage = `url(${postBackgroundImages[i]})`;
             bgRef.current.classList.add("bg_handler");
             setShowBGs(true);
-            setBackground(postBackgroundImages[i]);
+            if (setBackground) {
+                setBackground(postBackgroundImages[i]);
+            }
         }
     };
 
@@ -64,7 +66,9 @@ const EmojiPickerBackground: React.FC<Props> = ({
         if (bgRef.current?.style) {
             bgRef.current.style.backgroundImage = "";
             setShowBGs(false);
-            setBackground("");
+            if (setBackground) {
+                setBackground("");
+            }
         }
     };
     return (
@@ -111,7 +115,7 @@ const EmojiPickerBackground: React.FC<Props> = ({
                         onClick={nobgHandler}
                     ></div>
                 )}
-                {!isAddingImage && showBGs && (
+                {!isAddingImage && showBGs && setBackground && (
                     <>
                         {postBackgroundImages.map((bg, i) => (
                             <img

@@ -143,6 +143,7 @@ const PostPopup: React.FC<Props> = ({
                             setImages={setImages}
                             images={images}
                             setPostPreview={setPostPreview}
+                            setError={setError}
                         />
                     )}
                     <AddToPost setPostPreview={setPostPreview} />
