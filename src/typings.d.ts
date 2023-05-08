@@ -34,12 +34,17 @@ interface User1 {
     gender: "male" | "female";
     picture: string;
 }
+
+interface PostPicture {
+    url: string;
+}
 interface Post {
     _id: string;
     type: "profilePicture" | "cover" | null;
     text?: string;
-    images?: Array<String>;
+    images?: Array<PostPicture>;
     user: User1;
     background?: string;
     comments?: any;
+    createdAt?: Date;
 }
