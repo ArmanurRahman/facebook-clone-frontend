@@ -19,3 +19,18 @@ interface UserResponse {
 interface SvgIconProps {
     color?: string;
 }
+
+interface Comment {
+    id: string;
+    commentedBy: string;
+    commentedAt: string;
+}
+interface Post {
+    id: string;
+    type: "profilePicture" | "cover" | null;
+    text?: string;
+    images?: Array<String>;
+    user: string;
+    background?: string;
+    comments?: any;
+}
