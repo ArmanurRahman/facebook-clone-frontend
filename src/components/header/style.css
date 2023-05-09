@@ -78,6 +78,14 @@
     background-color: var(--bg-third);
     border-radius: 100%;
 }
+.hover3{
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.hover3:hover {
+    background-color: var(--bg-third);
+    border-radius: 5px;
+}
 .header .header_right {
     justify-self: end;
     display: flex;

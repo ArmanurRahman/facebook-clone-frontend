@@ -1,6 +1,7 @@
 import Moment from "react-moment";
 import { Dots } from "../../svg";
 import "./post.css";
+import UserInteraction from "./UserInteraction";
 interface Props {
     post: Post;
 }
@@ -96,6 +97,7 @@ const Post: React.FC<Props> = ({ post }) => {
                     </div>
                 )}
             </div>
+            <UserInteraction />
         </div>
     );
 };
