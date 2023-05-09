@@ -33,10 +33,8 @@ const CreateComment = () => {
         setText(newText);
         setCurrentCursor(start.length + emoji.length);
     };
-    console.log(image);
     const handleInput: ChangeEventHandler<HTMLInputElement> = (e) => {
         const tempFiles = (e.target as HTMLInputElement).files;
-        console.log(tempFiles);
         if (tempFiles) {
             let img = Array.from(tempFiles)[0];
 

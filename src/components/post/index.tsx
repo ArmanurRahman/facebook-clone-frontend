@@ -2,12 +2,17 @@ import Moment from "react-moment";
 import { Dots } from "../../svg";
 import "./post.css";
 import UserInteraction from "./UserInteraction";
+import PostMenu from "./postMenu";
+import { useRef, useState } from "react";
 interface Props {
     post: Post;
+    loginUser: string;
 }
 
-const Post: React.FC<Props> = ({ post }) => {
+const Post: React.FC<Props> = ({ post, loginUser }) => {
     const { user } = post;
+    const [showMenu, setShowMenu] = useState(false);
+    const menuBtnRef = useRef<HTMLDivElement>(null);
     return (
         <div className='post_box'>
             <div className='post_header'>
@@ -41,8 +46,25 @@ const Post: React.FC<Props> = ({ post }) => {
                     <></>
                 )}
 
-                <div className='post_header_action hover2'>
-                    <Dots color={"#e4e6eb"} />
+                <div className='post_header_action_menu'>
+                    {showMenu && (
+                        <PostMenu
+                            loginUser={loginUser}
+                            postUser={user._id}
+                            isImage={
+                                post.images ? post.images.length > 0 : false
+                            }
+                            setShowMenu={setShowMenu}
+                            ref={menuBtnRef}
+                        />
+                    )}
+                    <div
+                        ref={menuBtnRef}
+                        className='post_header_action hover2'
+                        onClick={() => setShowMenu((prev) => !prev)}
+                    >
+                        <Dots color={"#e4e6eb"} />
+                    </div>
                 </div>
             </div>
             <div className='post_body'>

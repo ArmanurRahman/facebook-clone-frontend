@@ -27,7 +27,7 @@ interface Comment {
 }
 
 interface User1 {
-    id: string;
+    _id: string;
     firstName: string;
     lastName: string;
     userName: string;

@@ -81,7 +81,7 @@ const HomeMiddle: React.FC<Props> = ({
             />
             <div className='post_container'>
                 {posts.map((post) => (
-                    <Post post={post} key={post._id} />
+                    <Post post={post} key={post._id} loginUser={userId} />
                 ))}
             </div>
         </div>
