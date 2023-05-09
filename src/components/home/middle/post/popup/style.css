@@ -117,7 +117,7 @@
 }
 .post_popup_emoji_picker {
     position: absolute;
-    left: 60%;
+    left: 90%;
     bottom:30px
 }
 
@@ -384,4 +384,85 @@
 }
 .post_error_container button{
     width: 80px;
+}
+
+@media (max-width: 530px) {
+    .add_to_post {
+        gap: 4px;
+    }
+    .post_popup_container{
+        width: 350px;
+    }  
+    .post_popup_input_action > img{
+        width: 24px;
+        height: 24px;
+    } 
+    .post_popup_input_action_none {
+        width: 24px;
+        height: 24px;
+    }
+    .add_to_post_icon >svg
+    {
+        width: 20px;
+    }
+    .add_to_post_icon >i {
+        transform: scale(.8);
+    }
+}
+@media (max-width: 410px) {
+    .add_to_post_title{
+        font-size: 12px;
+    }
+    .add_to_post {
+        gap: 2px;
+    }
+    .post_popup_container{
+        width: 300px;
+    }
+    .post_popup_input_action > img{
+        width: 20px;
+        height: 20px;
+    } 
+    .post_popup_input_action_none {
+        width: 20px;
+        height: 20px;
+    }
+    .add_to_post_icon >svg
+    {
+        width: 16px;
+    }
+    .add_to_post_icon >i {
+        transform: scale(.6);
+    }
+}
+@media (max-width: 900px) {
+    .post_popup_emoji_picker{
+        left: 70%;
+    }
+}
+@media (max-width: 750px) {
+    .post_popup_emoji_picker{
+        left: 60%;
+    }
+}
+@media (max-width: 650px) {
+    .post_popup_emoji_picker{
+        left: 50%;
+    }
+}
+@media (max-width: 580px) {
+    .post_popup_emoji_picker{
+        left: 40%;
+    }
+}
+
+@media (max-width: 510px) {
+    .post_popup_emoji_picker{
+        left: 30%;
+    }
+}
+@media (max-width: 450px) {
+    .post_popup_emoji_picker{
+        left: 10%;
+    }
 }

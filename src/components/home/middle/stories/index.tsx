@@ -46,13 +46,24 @@ const Stories: React.FC<Props> = ({ picture }) => {
     const query950px = useMediaQuery({
         query: "(max-width: 900px)",
     });
+    const query750px = useMediaQuery({
+        query: "(max-width: 750px)",
+    });
     const query700px = useMediaQuery({
         query: "(max-width: 700px)",
     });
-    const query450px = useMediaQuery({
+    const query500px = useMediaQuery({
         query: "(max-width: 500px)",
     });
-    const storyNumber = query450px ? 4 : query700px ? 5 : query950px ? 6 : 5;
+    const storyNumber = query500px
+        ? 4
+        : query700px
+        ? 5
+        : query750px
+        ? 5
+        : query950px
+        ? 6
+        : 5;
     return (
         <div className='story_container'>
             <AddStory picture={picture} />

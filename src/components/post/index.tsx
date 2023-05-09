@@ -59,7 +59,7 @@ const Post: React.FC<Props> = ({ post }) => {
                     </div>
                 )}
                 {post.images && post.images.length && (
-                    <div className='post_text'>{post.text}</div>
+                    <div className=''>{post.text}</div>
                 )}
                 {post.images && post.images.length && (
                     <div

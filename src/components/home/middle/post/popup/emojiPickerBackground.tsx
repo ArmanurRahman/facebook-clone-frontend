@@ -106,10 +106,10 @@ const EmojiPickerBackground: React.FC<Props> = ({
                     <img
                         src='../../../icons/colorful.png'
                         alt=''
-                        onClick={() => setShowBGs(true)}
+                        onClick={() => setShowBGs((prev) => !prev)}
                     />
                 )}
-                {!isAddingImage && showBGs && background && (
+                {!isAddingImage && showBGs && (
                     <div
                         className='post_popup_input_action_none'
                         onClick={nobgHandler}
@@ -138,6 +138,7 @@ const EmojiPickerBackground: React.FC<Props> = ({
                             width={270}
                             searchDisabled
                             onEmojiClick={handleEmoji}
+                            previewConfig={{ showPreview: false }}
                         />
                     )}
                 </div>

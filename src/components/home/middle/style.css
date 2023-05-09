@@ -105,13 +105,16 @@
 }
 @media (max-width: 500px) {
     .story_card {
-        width: 14vw;
+        width: 13vw;
     }
 }
 
 @media (max-width: 485px) {
     .story_card {
         width: 17vw;
+    }
+    .home_middle_container {
+        padding: .5rem;
     }
 }
 
