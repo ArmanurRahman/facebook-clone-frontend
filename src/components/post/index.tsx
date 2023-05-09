@@ -102,10 +102,13 @@ const Post: React.FC<Props> = ({ post, loginUser }) => {
                     >
                         {post.images.slice(0, 6).map((img, i) => {
                             if (i < 5 || post.images?.length === 6) {
-                                return <img src={img.url} alt='' />;
+                                return <img src={img.url} alt='' key={i} />;
                             } else {
                                 return (
-                                    <div className='preview_more_than_6_div'>
+                                    <div
+                                        className='preview_more_than_6_div'
+                                        key={i}
+                                    >
                                         <div>
                                             +
                                             {post.images &&

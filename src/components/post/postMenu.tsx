@@ -44,15 +44,20 @@ const PostMenu: React.FC<Props> = forwardRef((props, ref) => {
         <div className='post_menu_container' ref={postMenuRef}>
             <ul>
                 {isOwnPost && <MenuItem icon='pin_icon' title='Pin post' />}
-                {isOwnPost && (
-                    <MenuItem
-                        icon='save_icon'
-                        title='Save post'
-                        subtitle='Add this to your save item'
-                    />
-                )}
+
+                <MenuItem
+                    icon='save_icon'
+                    title='Save post'
+                    subtitle='Add this to your save item'
+                />
                 <div className='line'></div>
                 {isOwnPost && <MenuItem icon='edit_icon' title='Edit post' />}
+                {!isOwnPost && (
+                    <MenuItem
+                        icon='turnOnNotification_icon'
+                        title='Turn on notification for this post'
+                    />
+                )}
                 {isImage && <MenuItem icon='download_icon' title='Download' />}
                 {isImage && (
                     <MenuItem icon='fullscreen_icon' title='Full Screen' />
@@ -92,7 +97,7 @@ const PostMenu: React.FC<Props> = forwardRef((props, ref) => {
                 {!isOwnPost && <div className='line'></div>}
                 {!isOwnPost && (
                     <MenuItem
-                        image='../../../icons/repost.png'
+                        image='../../../icons/report.png'
                         title='Report post'
                         subtitle='I am concert about this post'
                     />

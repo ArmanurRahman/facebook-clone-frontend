@@ -71,7 +71,7 @@ const Active = () => {
                     message={error}
                 />
             )}
-            <HomeComponent />
+            <HomeComponent posts={[]} />
         </div>
     );
 };

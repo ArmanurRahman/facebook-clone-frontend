@@ -334,6 +334,7 @@
     align-items: center;
     gap: 1rem;
     padding: 0 .5rem;
+    cursor: pointer;
 }
 
 .post_menu_item_text {
