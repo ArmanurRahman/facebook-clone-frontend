@@ -88,6 +88,7 @@
     color: var(--color-secondary);
     font-weight: bold;
     margin: 0 auto;
+    background-size: cover;
 }
 
 .post_with_images {
