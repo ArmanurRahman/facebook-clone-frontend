@@ -58,7 +58,7 @@ const PostPopup: React.FC<Props> = ({
             }
         } else if (images && images.length > 0) {
             const postImages = images.map((image) => dataURItoBlob(image));
-            const path = `${userName}/post images`;
+            const path = `${userName}/post_images`;
             const formData = new FormData();
             formData.append("path", path);
             postImages.forEach((img) => {

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import * as actionType from "../../../store/action";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface UserMenuProps {
     picture: string | undefined;
@@ -25,18 +25,21 @@ const UserMenu: React.FC<UserMenuProps> = (props) => {
     return (
         <div className='user_menu_wrapper' ref={userMenuRef}>
             <div className='user_menu_profile'>
-                <div className='user_menu_profile_image'>
+                <Link to='/profile' className='user_menu_profile_image'>
                     <img
                         src={picture}
                         alt='ProfilePictire'
                         width={50}
                         height={50}
                     />
-                </div>
+                </Link>
                 <div className='user_menu_profile_details'>
-                    <p className='user_menu_profile_details_name'>
+                    <Link
+                        to='/profile'
+                        className='user_menu_profile_details_name'
+                    >
                         {firstName} {lastName}
-                    </p>
+                    </Link>
                     <p className='user_menu_profile_details_see_profle'>
                         See your profile
                     </p>

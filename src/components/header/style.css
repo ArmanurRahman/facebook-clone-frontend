@@ -301,18 +301,21 @@
 .user_menu_profile {
     display: flex;
     align-items: center;
-    gap: 1rem
+    gap: 1rem;
+    user-select: none;
 }
 .user_menu_profile_image {
     width: 50px;
     height: 50px;
     border-radius: 100%;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .user_menu_profile_details_name {
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .user_menu_profile_details_see_profle {

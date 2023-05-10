@@ -48,3 +48,19 @@ interface Post {
     comments?: any;
     createdAt?: Date;
 }
+
+interface Profile {
+    firstName: string;
+    lastName: string;
+    userName: string;
+    email: string;
+    picture: string;
+    gender: "male" | "female";
+    bYear: number;
+    bMonth: number;
+    bDay: number;
+    friends: any;
+    followers: any;
+    following: any;
+    requests: any;
+}

@@ -4,49 +4,13 @@ import HomeComponent from "../../components/home";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducer";
-
-interface State {
-    loading: boolean;
-    posts: Array<Post> | [];
-    error: string;
-}
-interface ActionRequest {
-    type: "POSTS_REQUEST";
-}
-interface ActionSuccess {
-    type: "POSTS_SUCCESS";
-    payload: Array<Post>;
-}
-interface ActionError {
-    type: "POSTS_ERROR";
-    payload: string;
-}
-const reducer = (
-    state: State,
-    action: ActionRequest | ActionSuccess | ActionError
-) => {
-    switch (action.type) {
-        case "POSTS_REQUEST":
-            return { ...state, loading: true, error: "" };
-        case "POSTS_SUCCESS":
-            return {
-                ...state,
-                loading: false,
-                errror: "",
-                posts: action.payload,
-            };
-        case "POSTS_ERROR":
-            return { ...state, loading: false, error: action.payload };
-        default:
-            return state;
-    }
-};
+import { postReducer } from "../../function/reducer";
 
 const Home = () => {
     const [visible, setVisible] = useState(true);
 
     const user = useSelector<RootState, UserResponse>((state) => state.user);
-    const [{ loading, posts, error }, dispatch] = useReducer(reducer, {
+    const [{ loading, posts, error }, dispatch] = useReducer(postReducer, {
         loading: false,
         posts: [],
         error: "",

@@ -12,6 +12,7 @@ function App() {
         <Routes>
             <Route element={<LoggedInRoute />}>
                 <Route path='/profile' element={<Profile />} />
+                <Route path='/profile/:userName' element={<Profile />} />
                 <Route path='/' element={<Home />} />
                 <Route path='/activate/:token' element={<Active />} />
             </Route>
