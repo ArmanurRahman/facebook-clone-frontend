@@ -67,14 +67,18 @@ const Profile = () => {
                 )}
                 <div className='devider'></div>
                 <div className='profile_menu_container'>
-                    <div className='profile_menu_item active'>Posts</div>
-                    <div className='profile_menu_item'>About</div>
-                    <div className='profile_menu_item'>Friends</div>
-                    <div className='profile_menu_item'>Photos</div>
-                    <div className='profile_menu_item'>Videos</div>
-                    <div className='profile_menu_item'>Check ins</div>
-                    <div className='profile_menu_item'>More</div>
-                    <Dots color='#65676b' />
+                    <div className='profile_menu_container_1'>
+                        <div className='profile_menu_item active'>Posts</div>
+                        <div className='profile_menu_item'>About</div>
+                        <div className='profile_menu_item'>Friends</div>
+                        <div className='profile_menu_item'>Photos</div>
+                        <div className='profile_menu_item'>Videos</div>
+                        <div className='profile_menu_item'>Check ins</div>
+                        <div className='profile_menu_item'>More</div>
+                    </div>
+                    <div className='profile_menu_container_2'>
+                        <Dots color='#65676b' />
+                    </div>
                 </div>
                 <div className='devider'></div>
             </div>
