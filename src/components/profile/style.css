@@ -113,6 +113,20 @@
     }
 }
 
+.profile_menu_container {
+    display: flex;
+    color: var(--color-secondary);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+.profile_menu_container >div {
+    padding: 1rem;
+}
+.profile_menu_container >div:hover{
+    background-color: var(--bg-third);
+}
 @media (max-width: 550px) {
     .profile_picture_container {
         flex-direction: column;
@@ -135,5 +149,20 @@
     }
     .profile_cover_photo_menu_item {
         bottom: 110px;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile_menu_container >div {
+        padding: .5rem;
+    }
+}
+
+@media (max-width: 460px) {
+    .profile_menu_container {
+        font-size: 12px;
+    }
+    .profile_menu_container >div {
+        padding: 6px;
     }
 }

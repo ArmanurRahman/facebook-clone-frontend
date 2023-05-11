@@ -8,6 +8,7 @@ import axios from "axios";
 import Header from "../../components/header";
 import Cover from "../../components/profile/cover";
 import ProfilePicture from "../../components/profile/profilePicture";
+import { Dots } from "../../svg";
 
 const Profile = () => {
     const { userName } = useParams();
@@ -64,6 +65,18 @@ const Profile = () => {
                         lastName={profile.lastName}
                     />
                 )}
+                <div className='devider'></div>
+                <div className='profile_menu_container'>
+                    <div className='profile_menu_item active'>Posts</div>
+                    <div className='profile_menu_item'>About</div>
+                    <div className='profile_menu_item'>Friends</div>
+                    <div className='profile_menu_item'>Photos</div>
+                    <div className='profile_menu_item'>Videos</div>
+                    <div className='profile_menu_item'>Check ins</div>
+                    <div className='profile_menu_item'>More</div>
+                    <Dots color='#65676b' />
+                </div>
+                <div className='devider'></div>
             </div>
         </React.Fragment>
     );

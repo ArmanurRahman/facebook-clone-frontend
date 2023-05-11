@@ -127,3 +127,7 @@ a {
 .circle:hover {
   background-color: var(--bg-third);
 }
+
+.active{
+  border-bottom: 2px solid var(--blue-color);
+}
