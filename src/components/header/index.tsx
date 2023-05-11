@@ -4,6 +4,7 @@ import {
     Friends,
     Gaming,
     Home,
+    HomeActive,
     Logo,
     Market,
     Menu,
@@ -21,7 +22,10 @@ import SettingPrivacy from "./userMenu/SettingPrivacy";
 import DisplayAndAccessiblity from "./userMenu/DisplayAccessiblity";
 import useOutsideClick from "../../helpers/useOutsideClick";
 
-const Header = () => {
+interface Props {
+    page?: "home" | "profile";
+}
+const Header: React.FC<Props> = ({ page }) => {
     const user = useSelector<RootState, UserResponse>((data) => data.user);
     const [showSearchArea, setShowSearchArea] = useState(false);
     const [showAllMenu, setShowAllMenu] = useState(false);
@@ -53,8 +57,10 @@ const Header = () => {
             )}
 
             <div className='header_middle'>
-                <div className='icon hover1 active'>
-                    <Home color={color} />
+                <div
+                    className={`icon hover1 ${page === "home" ? "active" : ""}`}
+                >
+                    {page === "home" ? <HomeActive /> : <Home color={color} />}
                 </div>
                 <div className='icon hover1'>
                     <Friends color={color} />
@@ -99,7 +105,9 @@ const Header = () => {
                         src={user.picture}
                         alt='user_photo'
                         className={`account_photo ${
-                            userMenu ? "header_account_active" : ""
+                            userMenu || page === "profile"
+                                ? "header_account_active"
+                                : ""
                         }`}
                         width={30}
                         height={30}
