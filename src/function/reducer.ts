@@ -37,7 +37,7 @@ export const postReducer = (
 
 interface ProfileState {
     loading: boolean;
-    profile: Profile | {};
+    profile: Profile | null;
     error: string;
 }
 interface ProfileRequest {
@@ -45,7 +45,7 @@ interface ProfileRequest {
 }
 interface ProfileSuccess {
     type: "PROFILE_SUCCESS";
-    payload: Array<Post>;
+    payload: Profile;
 }
 interface ProfileError {
     type: "PROFILE_ERROR";

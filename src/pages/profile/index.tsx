@@ -6,8 +6,8 @@ import { useEffect, useReducer } from "react";
 import { profileReducer } from "../../function/reducer";
 import axios from "axios";
 import Header from "../../components/header";
-import "./style.css";
 import Cover from "../../components/profile/cover";
+import ProfilePicture from "../../components/profile/profilePicture";
 
 const Profile = () => {
     const { userName } = useParams();
@@ -22,7 +22,7 @@ const Profile = () => {
 
     const [{ loading, profile, error }, dispatch] = useReducer(profileReducer, {
         loading: false,
-        profile: [],
+        profile: null,
         error: "",
     });
 
@@ -55,7 +55,16 @@ const Profile = () => {
     return (
         <React.Fragment>
             <Header page='profile' />
-            <Cover isOwnProfile={isOwnProfile} />
+            <div className='profile_container'>
+                <Cover isOwnProfile={isOwnProfile} />
+                {profile && (
+                    <ProfilePicture
+                        picture={profile.picture}
+                        firstName={profile.firstName}
+                        lastName={profile.lastName}
+                    />
+                )}
+            </div>
         </React.Fragment>
     );
 };
