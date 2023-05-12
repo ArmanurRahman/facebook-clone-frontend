@@ -13,6 +13,7 @@ import PeopleMayKnow from "../../components/profile/peopleMayKnow";
 import HomePost from "../../components/home/middle/post";
 import GridPost from "../../components/post/gridPost";
 import Post from "../../components/post";
+import Photo from "../../components/profile/photo";
 
 const Profile = () => {
     const { userName } = useParams();
@@ -33,7 +34,7 @@ const Profile = () => {
 
     useEffect(() => {
         getProfile();
-    }, []);
+    }, [profileUser]);
     const getProfile = async () => {
         try {
             dispatch({ type: "PROFILE_REQUEST" });
@@ -90,7 +91,9 @@ const Profile = () => {
                 <div className='profile_next_container_inside'>
                     <PeopleMayKnow />
                     <div className='profle_grid'>
-                        <div className='profle_grid_left'></div>
+                        <div className='profle_grid_left'>
+                            <Photo profileUser={profileUser} />
+                        </div>
                         <div className='profle_grid_right'>
                             {isOwnProfile && profile && (
                                 <HomePost

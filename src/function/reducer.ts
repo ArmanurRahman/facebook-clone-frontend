@@ -71,3 +71,40 @@ export const profileReducer = (
             return state;
     }
 };
+
+interface PhotoState {
+    loading: boolean;
+    photos: ListPhoto | null;
+    error: string;
+}
+interface PhotoRequest {
+    type: "PHOTO_REQUEST";
+}
+interface PhotoSuccess {
+    type: "PHOTO_SUCCESS";
+    payload: ListPhoto;
+}
+interface PhotoError {
+    type: "PHOTO_ERROR";
+    payload: string;
+}
+export const photoReducer = (
+    state: PhotoState,
+    action: PhotoRequest | PhotoSuccess | PhotoError
+) => {
+    switch (action.type) {
+        case "PHOTO_REQUEST":
+            return { ...state, loading: true, error: "" };
+        case "PHOTO_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                errror: "",
+                photos: action.payload,
+            };
+        case "PHOTO_ERROR":
+            return { ...state, loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};

@@ -4,6 +4,7 @@ import "./post.css";
 import UserInteraction from "./UserInteraction";
 import PostMenu from "./postMenu";
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 interface Props {
     post: Post;
     loginUser: string;
@@ -16,7 +17,10 @@ const Post: React.FC<Props> = ({ post, loginUser }) => {
     return (
         <div className='post_box'>
             <div className='post_header'>
-                <div className='post_header_user'>
+                <Link
+                    to={`/profile/${user.userName}`}
+                    className='post_header_user'
+                >
                     <img src={user.picture} alt='' />
                     <div className='post_header_user_name'>
                         <p>
@@ -29,7 +33,7 @@ const Post: React.FC<Props> = ({ post, loginUser }) => {
                             <img src='../../../icons/public.png' alt='' />
                         </div>
                     </div>
-                </div>
+                </Link>
                 {post.type === "profilePicture" ? (
                     <div className='post_type'>{`${user.firstName} ${
                         user.lastName

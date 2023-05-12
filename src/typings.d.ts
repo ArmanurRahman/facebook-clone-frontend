@@ -66,3 +66,16 @@ interface Profile {
     _id: string;
     posts: Array<Post>;
 }
+
+interface PhotoResource {
+    filename: string;
+    folder: string;
+    public_id: string;
+    created_at: Date;
+    uploaded_at: Date;
+    secure_url: string;
+}
+interface ListPhoto {
+    total_count: number;
+    resources: Array<PhotoResource> | [];
+}
