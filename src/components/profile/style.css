@@ -264,7 +264,15 @@
     justify-content: center;
     gap: 5px;
 }
-
+.no_post_found {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+    color: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 @media (max-width: 700px) {
     .profile_picture_action {
         flex-direction: column;
@@ -276,6 +284,12 @@
     .people_you_may_know_item button {
         font-size: 10px;
     }
+}
+@media (max-width: 650px) {
+    .profle_grid {
+        grid-template-columns: 100%;
+    }
+    
 }
 @media (max-width: 600px) {
     .profile_menu_container_1 >div {

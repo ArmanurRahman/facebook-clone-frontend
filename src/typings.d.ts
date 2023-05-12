@@ -64,4 +64,5 @@ interface Profile {
     following: any;
     requests: any;
     _id: string;
+    posts: Array<Post>;
 }

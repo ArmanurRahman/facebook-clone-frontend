@@ -12,6 +12,7 @@ import { Dots } from "../../svg";
 import PeopleMayKnow from "../../components/profile/peopleMayKnow";
 import HomePost from "../../components/home/middle/post";
 import GridPost from "../../components/post/gridPost";
+import Post from "../../components/post";
 
 const Profile = () => {
     const { userName } = useParams();
@@ -102,6 +103,21 @@ const Profile = () => {
                                 />
                             )}
                             <GridPost />
+                            {profile?.posts && profile.posts.length > 0 ? (
+                                <div className='post_container'>
+                                    {profile.posts.map((post) => (
+                                        <Post
+                                            post={post}
+                                            key={post._id}
+                                            loginUser={loggedInUser.id}
+                                        />
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className='no_post_found'>
+                                    No post found
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
