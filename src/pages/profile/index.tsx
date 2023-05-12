@@ -9,6 +9,7 @@ import Header from "../../components/header";
 import Cover from "../../components/profile/cover";
 import ProfilePicture from "../../components/profile/profilePicture";
 import { Dots } from "../../svg";
+import PeopleMayKnow from "../../components/profile/peopleMayKnow";
 
 const Profile = () => {
     const { userName } = useParams();
@@ -81,6 +82,9 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className='devider'></div>
+            </div>
+            <div className='profile_next_container'>
+                <PeopleMayKnow />
             </div>
         </React.Fragment>
     );
