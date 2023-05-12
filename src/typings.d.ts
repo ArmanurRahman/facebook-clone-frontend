@@ -63,4 +63,5 @@ interface Profile {
     followers: any;
     following: any;
     requests: any;
+    _id: string;
 }

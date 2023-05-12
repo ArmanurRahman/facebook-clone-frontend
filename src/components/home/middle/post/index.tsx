@@ -10,6 +10,7 @@ interface Props {
     userId: string;
     token?: string;
     userName: string;
+    isFromProfile?: boolean;
 }
 const HomePost: React.FC<Props> = ({
     picture,
@@ -18,6 +19,7 @@ const HomePost: React.FC<Props> = ({
     userId,
     token,
     userName,
+    isFromProfile,
 }) => {
     const [showPostPopup, setShowPostPopup] = useState(false);
     return (
@@ -43,10 +45,17 @@ const HomePost: React.FC<Props> = ({
                         <Photo color={"#4bbf67"} />
                         Photo.video
                     </div>
-                    <div className='home_post_action_item hover1'>
-                        <Feeling color={"#f7b928"} />
-                        Feeling/activity
-                    </div>
+                    {isFromProfile ? (
+                        <div className='home_post_action_item hover1'>
+                            <i className='lifeEvent_icon'></i>
+                            Feeling/activity
+                        </div>
+                    ) : (
+                        <div className='home_post_action_item hover1'>
+                            <Feeling color={"#f7b928"} />
+                            Feeling/activity
+                        </div>
+                    )}
                 </div>
             </div>
             {showPostPopup && (

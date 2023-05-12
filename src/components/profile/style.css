@@ -26,7 +26,7 @@
     background-color: var(--bg-primary);
     border-radius: 10px;
     box-shadow: 0 12px 28px 0 var(--shadow-1), 0 2px 4px 0 var(--shadow-2);
-    z-index: 101;
+    z-index: 60;
     font-size: 14px;
     font-weight: 600;
 }
@@ -59,7 +59,7 @@
     height: 150px;
     position: relative;
     top: -50px;
-    z-index: 100;
+    z-index: 50;
 
 }
 .profile_picture_photo img {
@@ -123,8 +123,7 @@
     width: 100%;
     color: var(--color-secondary);
     align-items: center;
-    max-width: 900px;
-    margin: 0 auto;
+    
     border: 2px solid var(--blue-color);
     border-radius: 10px;
     padding: 1rem;
@@ -212,6 +211,60 @@
 .profile_menu_container_1 >div:hover{
     background-color: var(--bg-third);
 }
+.profile_next_container_inside {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.profle_grid {
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.profle_grid_right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.grid_post_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.grid_post_header_right {
+    display: flex;
+    gap: 1rem;
+}
+.grid_post_header_right_gray_btn {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-secondary);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.grid_post_container {
+    background-color: var(--bg-primary);
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--color-secondary);
+}
+.grid_post_body {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.view_grid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
 @media (max-width: 700px) {
     .profile_picture_action {
         flex-direction: column;

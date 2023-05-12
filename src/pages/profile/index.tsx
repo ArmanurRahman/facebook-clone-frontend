@@ -10,6 +10,8 @@ import Cover from "../../components/profile/cover";
 import ProfilePicture from "../../components/profile/profilePicture";
 import { Dots } from "../../svg";
 import PeopleMayKnow from "../../components/profile/peopleMayKnow";
+import HomePost from "../../components/home/middle/post";
+import GridPost from "../../components/post/gridPost";
 
 const Profile = () => {
     const { userName } = useParams();
@@ -84,7 +86,25 @@ const Profile = () => {
                 <div className='devider'></div>
             </div>
             <div className='profile_next_container'>
-                <PeopleMayKnow />
+                <div className='profile_next_container_inside'>
+                    <PeopleMayKnow />
+                    <div className='profle_grid'>
+                        <div className='profle_grid_left'></div>
+                        <div className='profle_grid_right'>
+                            {isOwnProfile && profile && (
+                                <HomePost
+                                    picture={profile.picture}
+                                    firstName={profile.firstName}
+                                    lastName={profile.lastName}
+                                    userId={profile._id}
+                                    userName={profile.userName}
+                                    isFromProfile
+                                />
+                            )}
+                            <GridPost />
+                        </div>
+                    </div>
+                </div>
             </div>
         </React.Fragment>
     );
