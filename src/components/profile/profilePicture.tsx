@@ -1,16 +1,22 @@
+import { useState } from "react";
 import { Plus } from "../../svg";
 import "./style.css";
+import UpdateProfilePicture from "./updateProfilePicture";
 interface Props {
     picture: string;
     firstName: string;
     lastName: string;
 }
 const ProfilePicture: React.FC<Props> = ({ picture, firstName, lastName }) => {
+    const [showProfilePopup, setShowProfilePopup] = useState(false);
     return (
         <div className='profile_picture_container'>
             <div className='profile_picture_photo'>
                 <img src={picture} alt='' />
-                <div className='profile_picture_photo_icon'>
+                <div
+                    className='profile_picture_photo_icon'
+                    onClick={() => setShowProfilePopup(true)}
+                >
                     <i className='camera_filled_icon'></i>
                 </div>
             </div>
@@ -32,6 +38,11 @@ const ProfilePicture: React.FC<Props> = ({ picture, firstName, lastName }) => {
                     Edit Profile
                 </button>
             </div>
+            {showProfilePopup && (
+                <UpdateProfilePicture
+                    setShowProfilePopup={setShowProfilePopup}
+                />
+            )}
         </div>
     );
 };
