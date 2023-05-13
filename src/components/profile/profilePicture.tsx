@@ -6,19 +6,27 @@ interface Props {
     picture: string;
     firstName: string;
     lastName: string;
+    isOwnProfile: boolean;
 }
-const ProfilePicture: React.FC<Props> = ({ picture, firstName, lastName }) => {
+const ProfilePicture: React.FC<Props> = ({
+    picture,
+    firstName,
+    lastName,
+    isOwnProfile,
+}) => {
     const [showProfilePopup, setShowProfilePopup] = useState(false);
     return (
         <div className='profile_picture_container'>
             <div className='profile_picture_photo'>
                 <img src={picture} alt='' />
-                <div
-                    className='profile_picture_photo_icon'
-                    onClick={() => setShowProfilePopup(true)}
-                >
-                    <i className='camera_filled_icon'></i>
-                </div>
+                {isOwnProfile && (
+                    <div
+                        className='profile_picture_photo_icon'
+                        onClick={() => setShowProfilePopup(true)}
+                    >
+                        <i className='camera_filled_icon'></i>
+                    </div>
+                )}
             </div>
             <div className='profile_picture_name'>
                 <div className='profile_picture_name_details'>

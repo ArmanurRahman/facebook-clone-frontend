@@ -68,6 +68,7 @@ const Profile = () => {
                         picture={profile.picture}
                         firstName={profile.firstName}
                         lastName={profile.lastName}
+                        isOwnProfile={isOwnProfile}
                     />
                 )}
                 <div className='devider'></div>

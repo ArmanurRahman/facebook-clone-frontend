@@ -21,6 +21,7 @@ import UserMenu from "./userMenu";
 import SettingPrivacy from "./userMenu/SettingPrivacy";
 import DisplayAndAccessiblity from "./userMenu/DisplayAccessiblity";
 import useOutsideClick from "../../helpers/useOutsideClick";
+import { Link } from "react-router-dom";
 
 interface Props {
     page?: "home" | "profile";
@@ -41,9 +42,9 @@ const Header: React.FC<Props> = ({ page }) => {
     return (
         <div className='header'>
             <div className='header_left'>
-                <div className='header_left_logo'>
+                <Link className='header_left_logo' to={"/"}>
                     <Logo />
-                </div>
+                </Link>
                 <div
                     className='header_search'
                     onClick={() => setShowSearchArea(true)}

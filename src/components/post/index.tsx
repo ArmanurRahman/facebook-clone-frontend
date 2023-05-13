@@ -91,7 +91,9 @@ const Post: React.FC<Props> = ({ post, loginUser }) => {
                 {post.images && post.images.length && (
                     <div
                         className={`post_with_images ${
-                            post.images.length === 2
+                            post.images.length === 1
+                                ? ""
+                                : post.images.length === 2
                                 ? "preview_2"
                                 : post.images.length === 3
                                 ? "preview_3"
