@@ -38,7 +38,6 @@ const UpdateProfilePopup: React.FC<UploadProps> = ({
     const sliderRef = useRef<HTMLInputElement>(null);
     const onCropCompleteHandler = useCallback(
         (croppedArea: any, croppedPixel: any) => {
-            console.log(croppedArea, croppedPixel);
             setCropedAreaPixel(croppedPixel);
         },
         []
@@ -251,7 +250,6 @@ const UpdateProfilePicture: React.FC<Props> = ({ setShowProfilePopup }) => {
             };
         }
     };
-    console.log(image);
     return (
         <div className='blur'>
             <div className='update_profile_picture_container'>

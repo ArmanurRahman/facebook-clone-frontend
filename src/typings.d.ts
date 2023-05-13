@@ -14,6 +14,7 @@ interface UserResponse {
     message?: string;
     picture: string;
     verified?: boolean;
+    cover?: string;
 }
 
 interface SvgIconProps {

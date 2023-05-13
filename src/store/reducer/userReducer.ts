@@ -12,6 +12,8 @@ const userReducer = (
             return { ...state, verified: action.payload };
         case ActionType.UPLOAD_PROFILE_PICTURE:
             return { ...state, picture: action.payload };
+        case ActionType.UPLOAD_COVER_PICTURE:
+            return { ...state, cover: action.payload };
         case ActionType.LOGOUT:
             return null;
         default:

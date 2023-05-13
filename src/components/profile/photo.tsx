@@ -60,7 +60,6 @@ const Photo: React.FC<Props> = ({ profileUser }) => {
             });
         }
     };
-    console.log(photos);
     return (
         <div className='profile_photo_container'>
             <div className='profile_photo_container_header'>
