@@ -6,12 +6,14 @@ import {
     SUPPORTED_IMAGE_FORMAT,
 } from "../../constants/constant";
 import getCroppedImg from "../../helpers/getCroppedImg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/reducer";
 import uploadImages from "../../function/uploadImages";
 import { uploadProfilePicture } from "../../function/user";
 import { createPost } from "../../function/post";
 import PulseLoader from "react-spinners/PulseLoader";
+import * as ActionType from "../../store/action";
+import Cookies from "js-cookie";
 
 interface UploadProps {
     image: string;
@@ -25,6 +27,7 @@ const UpdateProfilePopup: React.FC<UploadProps> = ({
     user,
     setShowProfilePopup,
 }) => {
+    const dispatch = useDispatch();
     const [crop, setCrop] = useState({ x: 0, y: 0 });
     const [zoom, setZoom] = useState(1);
     const [cropedAreaPixel, setCropedAreaPixel] = useState();
@@ -97,6 +100,15 @@ const UpdateProfilePopup: React.FC<UploadProps> = ({
             } else {
                 setError(res);
             }
+            dispatch({
+                type: ActionType.UPLOAD_PROFILE_PICTURE,
+                payload: res[0].url,
+            });
+
+            Cookies.set(
+                "user",
+                JSON.stringify({ ...user, picture: res[0].url })
+            );
             setLoading(false);
             setShowProfilePopup(false);
         } catch (error: any) {
