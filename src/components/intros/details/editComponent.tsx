@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { getProfile, updateUserDetails } from "../../../function/user";
-import { useSelector } from "react-redux";
+import { updateUserDetails } from "../../../function/user";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/reducer";
+import * as ActionType from "../../../store/action";
 
 interface Item {
     icon: string;
@@ -20,6 +21,7 @@ const RenderItem: React.FC<Item> = ({ icon, text, name, id }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const user = useSelector<RootState, UserResponse>((state) => state.user);
+    const dispatch = useDispatch();
 
     const onCancelHandler = () => {
         setNewText("");
@@ -36,8 +38,9 @@ const RenderItem: React.FC<Item> = ({ icon, text, name, id }) => {
             } else {
                 setError(res);
             }
-            const { data } = await getProfile(user.userName, user.token);
+            dispatch({ type: ActionType.INTRO_UPDATE, id, text: newText });
             setLoading(false);
+            onCancelHandler();
         } catch (error: any) {
             console.log(error.response.data.error);
             setLoading(false);

@@ -2,8 +2,9 @@ import EditComponent from "./editComponent";
 
 interface Props {
     setShowEditComponent: (a: boolean) => void;
+    intros: Intros;
 }
-const EditIntro: React.FC<Props> = ({ setShowEditComponent }) => {
+const EditIntro: React.FC<Props> = ({ setShowEditComponent, intros }) => {
     return (
         <div className='blur'>
             <div className='edit_intro_container'>
@@ -22,11 +23,12 @@ const EditIntro: React.FC<Props> = ({ setShowEditComponent }) => {
                         <p>Customize Your Intro</p>
                         <span>Details you select will be public</span>
                     </div>
+
                     <EditComponent
                         title='Other Name'
                         items={[
                             {
-                                text: "",
+                                text: intros.otherName || "",
                                 name: "other name",
                                 icon: "studies",
                                 id: "otherName",

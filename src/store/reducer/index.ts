@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import userReducer from "./userReducer";
-import { profileReducer } from "../../function/reducer";
+import introReducer from "./introReducer";
 
 const rootReducer = combineReducers({
     user: userReducer,
-    // profile: profileReducer,
+    intros: introReducer,
 });
 export type RootState = ReturnType<typeof rootReducer>;
 export default rootReducer;

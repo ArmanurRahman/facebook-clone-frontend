@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { RootState } from "../../store/reducer";
 import { useEffect, useReducer } from "react";
@@ -16,10 +16,12 @@ import Post from "../../components/post";
 import Photo from "../../components/profile/photo";
 import Intros from "../../components/intros";
 import "./style.css";
+import * as ActionType from "../../store/action";
 
 const Profile = () => {
     const { userName } = useParams();
     const navigate = useNavigate();
+    const introDispatch = useDispatch();
 
     const loggedInUser = useSelector<RootState, UserResponse>(
         (state) => state.user
@@ -34,7 +36,6 @@ const Profile = () => {
         error: "",
     });
 
-    console.log(profile);
     useEffect(() => {
         getProfile();
     }, [profileUser]);
@@ -49,7 +50,12 @@ const Profile = () => {
                     },
                 }
             );
+
             dispatch({ type: "PROFILE_SUCCESS", payload: data });
+            introDispatch({
+                type: ActionType.INTRO_LOAD,
+                payload: data.details,
+            });
         } catch (error: any) {
             if (error.response.status === 404) {
                 navigate("/profile");
@@ -96,10 +102,7 @@ const Profile = () => {
                     <div className='profle_grid'>
                         <div className='profle_grid_left'>
                             <Photo profileUser={profileUser} />
-                            <Intros
-                                intros={profile?.details}
-                                isOwnProfile={isOwnProfile}
-                            />
+                            <Intros isOwnProfile={isOwnProfile} />
                         </div>
                         <div className='profle_grid_right'>
                             {isOwnProfile && profile && (

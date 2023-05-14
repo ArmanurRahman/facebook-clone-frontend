@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import Bio from "./bio";
 import "./style.css";
 import EditIntro from "./details/editIntro";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/reducer";
 
 interface Props {
-    intros?: Intros;
     isOwnProfile: boolean;
 }
-const Intros: React.FC<Props> = ({ intros, isOwnProfile }) => {
+const Intros: React.FC<Props> = ({ isOwnProfile }) => {
+    const intros = useSelector<RootState, Intros>(
+        (state) => state.intros.intros
+    );
     const bio = intros?.bio || "Welcome to my profie";
     const otherName = intros?.otherName || "";
     const job = intros?.job || "";
@@ -100,7 +104,10 @@ const Intros: React.FC<Props> = ({ intros, isOwnProfile }) => {
                     </React.Fragment>
                 )}
                 {showEditComponent && (
-                    <EditIntro setShowEditComponent={setShowEditComponent} />
+                    <EditIntro
+                        setShowEditComponent={setShowEditComponent}
+                        intros={intros}
+                    />
                 )}
             </div>
         </div>
