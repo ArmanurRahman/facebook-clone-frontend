@@ -2,11 +2,13 @@ import { ChangeEvent, useState } from "react";
 
 interface Props {
     bio: string;
+    isAddingBio: boolean;
+    setShowEditBio: (a: boolean) => void;
 }
 
-const Bio: React.FC<Props> = ({ bio }) => {
+const Bio: React.FC<Props> = ({ bio, isAddingBio, setShowEditBio }) => {
     const [isEditMode, setIsEditMode] = useState(false);
-    const [bioText, setBioText] = useState("");
+    const [bioText, setBioText] = useState(bio);
     const [characterRemaning, setCharacterRemaining] = useState(
         100 - bio.length
     );
@@ -20,12 +22,16 @@ const Bio: React.FC<Props> = ({ bio }) => {
     };
 
     const onCancelHandler = () => {
+        if (isAddingBio) {
+            setShowEditBio(false);
+        }
         setBioText("");
+        setCharacterRemaining(100);
         setIsEditMode(false);
     };
     return (
         <div className='bio'>
-            {!isEditMode ? (
+            {!isEditMode && !isAddingBio ? (
                 <div className='bio_text'>
                     <p>{bio}</p>
                     <button

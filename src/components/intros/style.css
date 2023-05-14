@@ -76,3 +76,11 @@
     align-items: center;
     justify-content: space-between;
 }
+.bio_text {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+.bio_text button {
+    font-weight: bold;
+}

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { RootState } from "../../store/reducer";
@@ -95,7 +95,10 @@ const Profile = () => {
                     <div className='profle_grid'>
                         <div className='profle_grid_left'>
                             <Photo profileUser={profileUser} />
-                            <Intros intros={profile?.details} />
+                            <Intros
+                                intros={profile?.details}
+                                isOwnProfile={isOwnProfile}
+                            />
                         </div>
                         <div className='profle_grid_right'>
                             {isOwnProfile && profile && (

@@ -1,27 +1,37 @@
+import React, { useState } from "react";
 import Bio from "./bio";
 import "./style.css";
 
 interface Props {
     intros?: Intros;
+    isOwnProfile: boolean;
 }
-const Intros: React.FC<Props> = ({ intros }) => {
-    const bio = intros?.bio || "";
+const Intros: React.FC<Props> = ({ intros, isOwnProfile }) => {
+    const bio = intros?.bio || "Welcome to my profie";
     const otherName = intros?.otherName || "";
-    const job = intros?.job || "Software Engineer";
-    const workplace = intros?.workplace || "Google";
-    const highSchool = intros?.highSchool || " Muksudpur S.S. High school";
-    const college = intros?.college || "Govt science College";
-    const currectCity = intros?.currectCity || "Tokyo";
-    const hometown = intros?.hometown || "Munshiganj";
-    const relationship = intros?.relationship || "Single";
+    const job = intros?.job || "";
+    const workplace = intros?.workplace || "";
+    const highSchool = intros?.highSchool || "";
+    const college = intros?.college || "";
+    const currectCity = intros?.currectCity || "";
+    const hometown = intros?.hometown || "";
+    const relationship = intros?.relationship || "";
     const instagram = intros?.instagram || "";
 
+    const [showEditBio, setShowEditBio] = useState(false);
     return (
         <div className='intro_container'>
             <div className='intro_header'>
                 <p>Intro</p>
             </div>
-            <Bio bio={bio} />
+            {(showEditBio || bio.length > 0) && (
+                <Bio
+                    bio={bio}
+                    isAddingBio={bio.length === 0}
+                    setShowEditBio={setShowEditBio}
+                />
+            )}
+
             <div className='intro_body'>
                 {(workplace || job) && (
                     <div className='intro'>
@@ -67,9 +77,21 @@ const Intros: React.FC<Props> = ({ intros }) => {
                         <p>From {hometown}</p>
                     </div>
                 )}
-                <button className='btn btn-grey'>Edit Details</button>
-                <button className='btn btn-grey'>Add Hobbies</button>
-                <button className='btn btn-grey'>Add Featured</button>
+                {isOwnProfile && (
+                    <React.Fragment>
+                        {!bio && !showEditBio && (
+                            <button
+                                className='btn btn-grey'
+                                onClick={() => setShowEditBio(true)}
+                            >
+                                Add Bio
+                            </button>
+                        )}
+                        <button className='btn btn-grey'>Edit Details</button>
+                        <button className='btn btn-grey'>Add Hobbies</button>
+                        <button className='btn btn-grey'>Add Featured</button>
+                    </React.Fragment>
+                )}
             </div>
         </div>
     );
