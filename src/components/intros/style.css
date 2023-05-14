@@ -1,0 +1,78 @@
+.intro_container {
+    width: 100%;
+    background-color: var(--bg-primary);
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--color-secondary);
+}
+
+.intro_header {
+    font-size: 16px;
+    font-weight: bold;
+
+}
+.intro_body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.intro {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+.intro img{
+    filter: invert(40%);
+}
+.intro_body button {
+    font-weight: bold;
+}
+.bio {
+    width: 100%;
+}
+.bio_edit {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 5px;
+}
+.bio_edit textarea{
+    width: 100%;
+    resize: none;
+    height: 100px;
+    border-radius: 10px;
+    outline-offset: 4px;
+    padding: .5rem;
+}
+.bio_edit span {
+    font-size: 12px;
+}
+.bio_action {
+    display: flex;
+    gap: .5rem;
+}
+.bio_edit textarea:focus {
+    outline-color: var(--blue-color);
+}
+.bio_edit textarea:hover {
+    border-color: var(--blue-color);
+}
+.bio_access {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+.bio_footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

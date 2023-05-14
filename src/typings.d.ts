@@ -15,8 +15,21 @@ interface UserResponse {
     picture: string;
     verified?: boolean;
     cover?: string;
+    details?: Intros;
 }
 
+interface Intros {
+    bio?: string;
+    otherName?: string;
+    job?: string;
+    workplace?: string;
+    highSchool?: string;
+    college?: string;
+    currectCity?: string;
+    hometown?: string;
+    relationship?: "Single" | "Merried";
+    instagram?: string;
+}
 interface SvgIconProps {
     color?: string;
 }
@@ -65,6 +78,7 @@ interface Profile {
     following: any;
     requests: any;
     _id: string;
+    details?: Intros;
     posts: Array<Post>;
 }
 

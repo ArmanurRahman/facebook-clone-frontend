@@ -14,6 +14,8 @@ import HomePost from "../../components/home/middle/post";
 import GridPost from "../../components/post/gridPost";
 import Post from "../../components/post";
 import Photo from "../../components/profile/photo";
+import Intros from "../../components/intros";
+import "./style.css";
 
 const Profile = () => {
     const { userName } = useParams();
@@ -93,6 +95,7 @@ const Profile = () => {
                     <div className='profle_grid'>
                         <div className='profle_grid_left'>
                             <Photo profileUser={profileUser} />
+                            <Intros intros={profile?.details} />
                         </div>
                         <div className='profle_grid_right'>
                             {isOwnProfile && profile && (

@@ -36,3 +36,9 @@
     bottom: -60px;
     right: 50px;
 }
+
+.profle_grid_left {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
