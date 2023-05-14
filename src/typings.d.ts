@@ -80,6 +80,7 @@ interface Profile {
     _id: string;
     details?: Intros;
     posts: Array<Post>;
+    details?: Intros;
 }
 
 interface PhotoResource {

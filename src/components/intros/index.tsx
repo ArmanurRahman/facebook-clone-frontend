@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Bio from "./bio";
 import "./style.css";
+import EditIntro from "./details/editIntro";
 
 interface Props {
     intros?: Intros;
@@ -19,6 +20,7 @@ const Intros: React.FC<Props> = ({ intros, isOwnProfile }) => {
     const instagram = intros?.instagram || "";
 
     const [showEditBio, setShowEditBio] = useState(false);
+    const [showEditComponent, setShowEditComponent] = useState(false);
     return (
         <div className='intro_container'>
             <div className='intro_header'>
@@ -87,10 +89,18 @@ const Intros: React.FC<Props> = ({ intros, isOwnProfile }) => {
                                 Add Bio
                             </button>
                         )}
-                        <button className='btn btn-grey'>Edit Details</button>
+                        <button
+                            className='btn btn-grey'
+                            onClick={() => setShowEditComponent(true)}
+                        >
+                            Edit Details
+                        </button>
                         <button className='btn btn-grey'>Add Hobbies</button>
                         <button className='btn btn-grey'>Add Featured</button>
                     </React.Fragment>
+                )}
+                {showEditComponent && (
+                    <EditIntro setShowEditComponent={setShowEditComponent} />
                 )}
             </div>
         </div>

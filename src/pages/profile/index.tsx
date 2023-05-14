@@ -34,6 +34,7 @@ const Profile = () => {
         error: "",
     });
 
+    console.log(profile);
     useEffect(() => {
         getProfile();
     }, [profileUser]);
