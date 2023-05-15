@@ -5,14 +5,6 @@ import { RootState } from "../../store/reducer";
 import { useEffect, useReducer } from "react";
 import { photoReducer } from "../../function/reducer";
 import axios from "axios";
-import Header from "../../components/header";
-import Cover from "../../components/profile/cover";
-import ProfilePicture from "../../components/profile/profilePicture";
-import { Dots } from "../../svg";
-import PeopleMayKnow from "../../components/profile/peopleMayKnow";
-import HomePost from "../../components/home/middle/post";
-import GridPost from "../../components/post/gridPost";
-import Post from "../../components/post";
 
 interface Props {
     profileUser: string;
@@ -83,7 +75,7 @@ const Photo: React.FC<Props> = ({ profileUser }) => {
             {photos && photos?.resources.length > 0 ? (
                 <div className='profile_photo_container_body'>
                     {photos?.resources.slice(0, 9).map((img, i) => (
-                        <img src={img.secure_url} alt='' />
+                        <img src={img.secure_url} alt='' key={i} />
                     ))}
                 </div>
             ) : (

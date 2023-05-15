@@ -1,4 +1,8 @@
 import { ChangeEvent, useState } from "react";
+import { updateUserDetails } from "../../function/user";
+import { useDispatch, useSelector } from "react-redux";
+import * as ActionType from "../../store/action";
+import { RootState } from "../../store/reducer";
 
 interface Props {
     bio: string;
@@ -12,6 +16,10 @@ const Bio: React.FC<Props> = ({ bio, isAddingBio, setShowEditBio }) => {
     const [characterRemaning, setCharacterRemaining] = useState(
         100 - bio.length
     );
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const user = useSelector<RootState, UserResponse>((state) => state.user);
 
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         if (e.target.value.length >= 101) {
@@ -29,6 +37,30 @@ const Bio: React.FC<Props> = ({ bio, isAddingBio, setShowEditBio }) => {
         setCharacterRemaining(100);
         setIsEditMode(false);
     };
+
+    const onSaveHandler = async () => {
+        try {
+            setLoading(true);
+            const res = await updateUserDetails("bio", bioText, user.token);
+
+            if (res === "ok") {
+                setLoading(false);
+            } else {
+                setError(res);
+            }
+            dispatch({
+                type: ActionType.INTRO_UPDATE,
+                id: "bio",
+                text: bioText,
+            });
+            setLoading(false);
+            onCancelHandler();
+        } catch (error: any) {
+            console.log(error.response.data.error);
+            setLoading(false);
+        }
+    };
+
     return (
         <div className='bio'>
             {!isEditMode && !isAddingBio ? (
@@ -60,7 +92,12 @@ const Bio: React.FC<Props> = ({ bio, isAddingBio, setShowEditBio }) => {
                             >
                                 Cancel
                             </button>
-                            <button className='btn btn-blue'>Save</button>
+                            <button
+                                className='btn btn-blue'
+                                onClick={onSaveHandler}
+                            >
+                                Save
+                            </button>
                         </div>
                     </div>
                 </div>

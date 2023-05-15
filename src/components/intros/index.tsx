@@ -12,7 +12,7 @@ const Intros: React.FC<Props> = ({ isOwnProfile }) => {
     const intros = useSelector<RootState, Intros>(
         (state) => state.intros.intros
     );
-    const bio = intros?.bio || "Welcome to my profie";
+    const bio = intros?.bio || "";
     const otherName = intros?.otherName || "";
     const job = intros?.job || "";
     const workplace = intros?.workplace || "";

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { updateUserDetails } from "../../../function/user";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/reducer";
@@ -9,13 +9,14 @@ interface Item {
     text: string;
     name: string;
     id: string;
+    type?: "input" | "select";
 }
 interface Props {
     title: string;
     items: Array<Item>;
 }
 
-const RenderItem: React.FC<Item> = ({ icon, text, name, id }) => {
+const RenderItem: React.FC<Item> = ({ icon, text, name, id, type }) => {
     const [newText, setNewText] = useState("");
     const [showEditPanel, setShowEditPanel] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -46,6 +47,9 @@ const RenderItem: React.FC<Item> = ({ icon, text, name, id }) => {
             setLoading(false);
         }
     };
+    const onSelectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+        setNewText(e.target.value);
+    };
     return (
         <div className='intro_item_component'>
             <div className='intro_item'>
@@ -73,11 +77,23 @@ const RenderItem: React.FC<Item> = ({ icon, text, name, id }) => {
             </div>
             {showEditPanel && (
                 <div className='bio_edit'>
-                    <textarea
-                        value={newText}
-                        onChange={(e) => setNewText(e.target.value)}
-                        placeholder={`Add ${name}`}
-                    ></textarea>
+                    {type === "select" ? (
+                        <select
+                            name='relationship'
+                            id='relationship'
+                            onChange={(e) => onSelectHandler(e)}
+                        >
+                            <option value={"Single"}> Single</option>
+                            <option value={"Merried"}> Merried</option>
+                        </select>
+                    ) : (
+                        <textarea
+                            value={newText}
+                            onChange={(e) => setNewText(e.target.value)}
+                            placeholder={`Add ${name}`}
+                        ></textarea>
+                    )}
+
                     <div className='bio_footer'>
                         <div className='bio_access'>
                             <img src='../../../icons/public.png' alt='' />
@@ -115,6 +131,7 @@ const EditComponent: React.FC<Props> = ({ title, items }) => {
                         name={item.name}
                         text={item.text}
                         id={item.id}
+                        type={item.type}
                     />
                 ))}
             </div>

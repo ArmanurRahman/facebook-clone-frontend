@@ -100,6 +100,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    overflow-y: auto;
 }
 .edit_intro_header {
     display: flex;
@@ -157,4 +158,18 @@
     justify-content: center;
     gap: .5rem;
     font-size: 14px;
+}
+.edit_component_body {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+.edit_intro_container_box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.bio_edit select {
+    width: 100%;
+    font-size: 16px;
 }
