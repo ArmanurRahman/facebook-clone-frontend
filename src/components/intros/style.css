@@ -173,3 +173,14 @@
     width: 100%;
     font-size: 16px;
 }
+
+@media (max-width: 600px) {
+    .edit_intro_container{
+        width: 400px;
+    }
+}
+@media (max-width: 475px) {
+    .edit_intro_container{
+        width: 300px;
+    }
+}
