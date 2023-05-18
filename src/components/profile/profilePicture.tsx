@@ -2,17 +2,24 @@ import { useState } from "react";
 import { Plus } from "../../svg";
 import "./style.css";
 import UpdateProfilePicture from "./updateProfilePicture";
+import Friendship from "./friendShip";
 interface Props {
     picture: string;
     firstName: string;
     lastName: string;
     isOwnProfile: boolean;
+    friendship: Friendship;
+    profileId: string;
+    otherName?: string;
 }
 const ProfilePicture: React.FC<Props> = ({
     picture,
     firstName,
     lastName,
     isOwnProfile,
+    friendship,
+    profileId,
+    otherName,
 }) => {
     const [showProfilePopup, setShowProfilePopup] = useState(false);
     return (
@@ -32,20 +39,25 @@ const ProfilePicture: React.FC<Props> = ({
                 <div className='profile_picture_name_details'>
                     <p>
                         {firstName} {lastName}
-                        <span> (Another name) </span>
+                        {otherName && <span> ({otherName}) </span>}
                     </p>
                 </div>
             </div>
-            <div className='profile_picture_action'>
-                <button className='btn btn-blue'>
-                    <Plus color={"#fff"} />
-                    Add to story
-                </button>
-                <button className='btn btn-grey'>
-                    <i className='edit_icon'></i>
-                    Edit Profile
-                </button>
-            </div>
+            {isOwnProfile ? (
+                <div className='profile_picture_action'>
+                    <button className='btn btn-blue'>
+                        <Plus color={"#fff"} />
+                        Add to story
+                    </button>
+                    <button className='btn btn-grey'>
+                        <i className='edit_icon'></i>
+                        Edit Profile
+                    </button>
+                </div>
+            ) : (
+                <Friendship friendshipObj={friendship} profileid={profileId} />
+            )}
+
             {showProfilePopup && (
                 <UpdateProfilePicture
                     setShowProfilePopup={setShowProfilePopup}

@@ -82,6 +82,7 @@ interface Profile {
     posts: Array<Post>;
     details?: Intros;
     cover: string;
+    friendship: Friendship;
 }
 
 interface PhotoResource {
@@ -95,4 +96,10 @@ interface PhotoResource {
 interface ListPhoto {
     total_count: number;
     resources: Array<PhotoResource> | [];
+}
+interface Friendship {
+    friends: boolean;
+    following: boolean;
+    requestSent: boolean;
+    requestReceived: boolean;
 }

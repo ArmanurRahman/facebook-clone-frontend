@@ -131,3 +131,12 @@ a {
 .active{
   border-bottom: 2px solid var(--blue-color);
 }
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+.invert {
+  filter: invert(100%);
+}

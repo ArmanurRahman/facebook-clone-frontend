@@ -495,6 +495,39 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+
+.friendship {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    margin-top: 1rem;
+}
+.friendship button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.friends_menu_wrap {
+    position: relative;
+}
+.open_cover_menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-primary);
+    border-radius: 10px;
+    box-shadow: 0 12px 28px 0 var(--shadow-1), 0 2px 4px 0 var(--shadow-2);
+    z-index: 60;
+    font-size: 14px;
+    font-weight: 600;
+}
+.open_cover_menu_item {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
 @media (max-width: 700px) {
     .profile_picture_action {
         flex-direction: column;
@@ -510,6 +543,12 @@
 @media (max-width: 650px) {
     .profle_grid {
         grid-template-columns: 100%;
+    }
+    
+}
+@media (max-width: 630px) {
+    .friendship{
+        flex-direction: column;
     }
     
 }
@@ -555,6 +594,10 @@
     }
     .profile_cover_photo {
         height: 300px;
+    }
+    .friendship{
+        flex-direction: row;
+        transform: translateY(-50px);
     }
 }
 

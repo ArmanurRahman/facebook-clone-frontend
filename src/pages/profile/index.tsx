@@ -82,6 +82,9 @@ const Profile = () => {
                         firstName={profile.firstName}
                         lastName={profile.lastName}
                         isOwnProfile={isOwnProfile}
+                        friendship={profile.friendship}
+                        profileId={profile._id}
+                        otherName={profile.details?.otherName}
                     />
                 )}
                 <div className='devider'></div>
