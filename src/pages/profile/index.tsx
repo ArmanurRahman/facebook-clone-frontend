@@ -66,11 +66,16 @@ const Profile = () => {
             });
         }
     };
+    console.log(profile);
     return (
         <React.Fragment>
             <Header page='profile' />
             <div className='profile_container'>
-                <Cover isOwnProfile={isOwnProfile} user={loggedInUser} />
+                <Cover
+                    isOwnProfile={isOwnProfile}
+                    user={loggedInUser}
+                    profile={profile}
+                />
                 {profile && (
                     <ProfilePicture
                         picture={profile.picture}

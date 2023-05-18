@@ -81,6 +81,7 @@ interface Profile {
     details?: Intros;
     posts: Array<Post>;
     details?: Intros;
+    cover: string;
 }
 
 interface PhotoResource {

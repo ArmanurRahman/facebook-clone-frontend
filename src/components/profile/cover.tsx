@@ -24,9 +24,10 @@ import { useMediaQuery } from "react-responsive";
 interface Props {
     isOwnProfile: boolean;
     user: UserResponse;
+    profile: Profile | null;
 }
 
-const Cover: React.FC<Props> = ({ isOwnProfile, user }) => {
+const Cover: React.FC<Props> = ({ isOwnProfile, user, profile }) => {
     const dispatch = useDispatch();
     const [showCoverMenu, setShowCoverMenu] = useState(false);
     const coverMenuRef = useRef<HTMLDivElement>(null);
@@ -142,9 +143,9 @@ const Cover: React.FC<Props> = ({ isOwnProfile, user }) => {
     const height = query460px ? 250 : query550px ? 300 : 350;
     return (
         <div className='profile_cover_photo'>
-            {!image && user.cover && (
+            {!image && profile && profile.cover && (
                 <div className='profile_cover_img'>
-                    <img src={user.cover} alt='' />
+                    <img src={profile.cover} alt='' />
                 </div>
             )}
             {error ? (
