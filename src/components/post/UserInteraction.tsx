@@ -67,39 +67,22 @@ const UserInteraction: React.FC<Props> = ({ postId }) => {
         <div className='user_interaction_container'>
             <div className='user_interaction_result_section'>
                 <div className='user_interaction_likes'>
-                    {check ? (
-                        <img
-                            src={`../../../reacts/${check}.svg`}
-                            alt=''
-                            className='small_react'
-                            style={{ width: "18px" }}
-                        />
-                    ) : (
-                        <i className='like_icon'></i>
-                    )}
-                    <span
-                        style={{
-                            color: `
-                            ${
-                                check === "like"
-                                    ? "#4267b2"
-                                    : check === "love"
-                                    ? "#f63459"
-                                    : check === "haha"
-                                    ? "#f7b125"
-                                    : check === "sad"
-                                    ? "#f7b125"
-                                    : check === "wow"
-                                    ? "#f7b125"
-                                    : check === "angry"
-                                    ? "#e4605a"
-                                    : ""
-                            }
-                            `,
-                        }}
-                    >
-                        {check ? check : "Like"}
-                    </span>
+                    {reacts &&
+                        reacts
+                            .sort((a: any, b: any) => {
+                                return b.count - a.count;
+                            })
+                            .slice(0, 3)
+                            .map(
+                                (react: any) =>
+                                    react.count > 0 && (
+                                        <img
+                                            src={`../../../reacts/${react.react}.svg`}
+                                            alt=''
+                                        />
+                                    )
+                            )}
+                    <div className='reacts_count_num'>{total > 0 && total}</div>
                 </div>
                 <p className='user_interaction_comments'>5 comments</p>
                 <p className='user_interaction_shares'>1 shares</p>
@@ -135,6 +118,30 @@ const UserInteraction: React.FC<Props> = ({ postId }) => {
                     ) : (
                         <i className='like_icon'></i>
                     )}
+                    <span
+                        style={{
+                            textTransform: "capitalize",
+                            color: `
+                            ${
+                                check === "like"
+                                    ? "#4267b2"
+                                    : check === "love"
+                                    ? "#f63459"
+                                    : check === "haha"
+                                    ? "#f7b125"
+                                    : check === "sad"
+                                    ? "#f7b125"
+                                    : check === "wow"
+                                    ? "#f7b125"
+                                    : check === "angry"
+                                    ? "#e4605a"
+                                    : ""
+                            }
+                            `,
+                        }}
+                    >
+                        {check ? check : "Like"}
+                    </span>
                 </div>
                 <div className='user_interaction_user_action hover3'>
                     <i className='comment_icon'></i>

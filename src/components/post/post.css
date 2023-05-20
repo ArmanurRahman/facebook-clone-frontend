@@ -182,8 +182,13 @@
     flex: 1;
     display: flex;
     align-items: center;
-    gap: .5rem;
-    text-transform: capitalize;
+}
+.user_interaction_likes img{
+    width: 16px;
+    height: 16px;
+}
+.reacts_count_num {
+    margin-left: .5rem;
 }
 .user_interaction_user_actions{
     display: flex;
