@@ -1,14 +1,106 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactPopup from "./reactPopup";
 import CreateComment from "./createComment";
+import { reactPost, getReacts } from "../../function/react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/reducer";
 
-const UserInteraction = () => {
+interface Props {
+    postId: string;
+}
+const UserInteraction: React.FC<Props> = ({ postId }) => {
     const [showReact, setShowReact] = useState(false);
+    const [reacts, setReacts] = useState<any>();
+    const [check, setCheck] = useState<any>();
+    const [total, setTotal] = useState(0);
+    const [selectedReact, setSelectedReact] = useState("");
 
+    const user = useSelector<RootState, UserResponse>((state) => state.user);
+    useEffect(() => {
+        getPostReacts();
+    }, []);
+
+    const getPostReacts = async () => {
+        const res = await getReacts(postId, user?.token || "");
+        setReacts(res.reacts);
+        setCheck(res.check);
+        setTotal(res.total);
+        setSelectedReact(res.check);
+    };
+
+    const reactHandler = async (type: string) => {
+        console.log(type);
+        setSelectedReact(type);
+        reactPost(postId, type, user?.token || "");
+        if (!reacts) {
+            return;
+        }
+        if (check === type) {
+            setSelectedReact("");
+            setCheck(null);
+            let index = reacts.findIndex((x: any) => x.react === check);
+            if (index !== -1) {
+                const newReact = [...reacts];
+                newReact[index].count = newReact[index].count - 1;
+                setReacts(newReact);
+                setTotal((prev) => --prev);
+            }
+        } else {
+            let index = reacts.findIndex((x: any) => x.react === type);
+            let index1 = reacts.findIndex((x: any) => x.react === check);
+            if (index !== -1) {
+                const newReact = [...reacts];
+                newReact[index].count = newReact[index].count + 1;
+                setReacts(newReact);
+                setTotal((prev) => ++prev);
+            }
+            if (index1 !== -1) {
+                const newReact = [...reacts];
+                newReact[index1].count = newReact[index1].count - 1;
+                setReacts(newReact);
+                setTotal((prev) => --prev);
+            }
+            setCheck(type);
+        }
+    };
     return (
         <div className='user_interaction_container'>
             <div className='user_interaction_result_section'>
-                <div className='user_interaction_likes'>5likes</div>
+                <div className='user_interaction_likes'>
+                    {check ? (
+                        <img
+                            src={`../../../reacts/${check}.svg`}
+                            alt=''
+                            className='small_react'
+                            style={{ width: "18px" }}
+                        />
+                    ) : (
+                        <i className='like_icon'></i>
+                    )}
+                    <span
+                        style={{
+                            color: `
+                            ${
+                                check === "like"
+                                    ? "#4267b2"
+                                    : check === "love"
+                                    ? "#f63459"
+                                    : check === "haha"
+                                    ? "#f7b125"
+                                    : check === "sad"
+                                    ? "#f7b125"
+                                    : check === "wow"
+                                    ? "#f7b125"
+                                    : check === "angry"
+                                    ? "#e4605a"
+                                    : ""
+                            }
+                            `,
+                        }}
+                    >
+                        {check ? check : "Like"}
+                    </span>
+                </div>
                 <p className='user_interaction_comments'>5 comments</p>
                 <p className='user_interaction_shares'>1 shares</p>
             </div>
@@ -27,8 +119,22 @@ const UserInteraction = () => {
                         }, 500);
                     }}
                 >
-                    {showReact && <ReactPopup setShowReact={setShowReact} />}
-                    <i className='like_icon'></i> like
+                    {showReact && (
+                        <ReactPopup
+                            setShowReact={setShowReact}
+                            reactHandler={reactHandler}
+                        />
+                    )}
+                    {selectedReact ? (
+                        <img
+                            src={`../../../reacts/${selectedReact}.svg`}
+                            alt=''
+                            className=''
+                            style={{ width: "18px" }}
+                        />
+                    ) : (
+                        <i className='like_icon'></i>
+                    )}
                 </div>
                 <div className='user_interaction_user_action hover3'>
                     <i className='comment_icon'></i>

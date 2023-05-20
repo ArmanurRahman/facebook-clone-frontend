@@ -180,6 +180,10 @@
 }
 .user_interaction_likes{
     flex: 1;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    text-transform: capitalize;
 }
 .user_interaction_user_actions{
     display: flex;

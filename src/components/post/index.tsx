@@ -128,7 +128,7 @@ const Post: React.FC<Props> = ({ post, loginUser }) => {
                     </div>
                 )}
             </div>
-            <UserInteraction />
+            <UserInteraction postId={post._id} />
         </div>
     );
 };

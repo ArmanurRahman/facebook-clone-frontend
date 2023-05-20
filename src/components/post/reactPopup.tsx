@@ -27,8 +27,9 @@ const reacts = [
 
 interface Props {
     setShowReact: (a: boolean) => void;
+    reactHandler: (a: string) => void;
 }
-const ReactPopup: React.FC<Props> = ({ setShowReact }) => {
+const ReactPopup: React.FC<Props> = ({ setShowReact, reactHandler }) => {
     return (
         <div
             className='react_popup_container'
@@ -44,7 +45,9 @@ const ReactPopup: React.FC<Props> = ({ setShowReact }) => {
             }}
         >
             {reacts.map((react) => (
-                <img src={react.image} alt='' key={react.name} />
+                <div key={react.name} onClick={() => reactHandler(react.name)}>
+                    <img src={react.image} alt='' />
+                </div>
             ))}
         </div>
     );
