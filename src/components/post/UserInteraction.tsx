@@ -153,7 +153,11 @@ const UserInteraction: React.FC<Props> = ({ postId }) => {
                 </div>
             </div>
             <div className='devider'></div>
-            <CreateComment />
+            <CreateComment
+                userName={user.userName}
+                token={user.token || ""}
+                postId={postId}
+            />
             <div className='user_interaction_comments_section'></div>
         </div>
     );

@@ -6,8 +6,17 @@ import {
     MAX_FILE_SIZE,
     SUPPORTED_IMAGE_FORMAT,
 } from "../../constants/constant";
+import dataURItoBlob from "../../helpers/dataURItoBlob";
+import { comment } from "../../function/post";
+import uploadImages from "../../function/uploadImages";
+import { ClipLoader } from "react-spinners";
 
-const CreateComment = () => {
+interface Props {
+    userName: string;
+    postId: string;
+    token: string;
+}
+const CreateComment: React.FC<Props> = ({ userName, postId, token }) => {
     const user = useSelector<RootState, UserResponse>((state) => state.user);
     const [showEmoji, setShowEmoji] = useState(false);
     const statusRef = useRef<HTMLInputElement>(null);
@@ -15,6 +24,7 @@ const CreateComment = () => {
     const [text, setText] = useState("");
     const [image, setImage] = useState("");
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const imageInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -56,6 +66,36 @@ const CreateComment = () => {
             };
         }
     };
+    const handleComment = async (e: any) => {
+        if (e.key === "Enter") {
+            if (image !== "") {
+                setLoading(true);
+                const img = dataURItoBlob(image);
+                const path = `${userName}/post_images/${postId}`;
+                let formData = new FormData();
+                formData.append("path", path);
+                formData.append("file", img);
+                const imgComment = await uploadImages(formData, token);
+
+                const comments = await comment(
+                    postId,
+                    text,
+                    imgComment[0].url,
+                    token
+                );
+                setLoading(false);
+                setText("");
+                setImage("");
+            } else {
+                setLoading(true);
+
+                const comments = await comment(postId, text, "", token);
+                setLoading(false);
+                setText("");
+                setImage("");
+            }
+        }
+    };
     return (
         <div className='user_interaction_create_comment'>
             <div className='create_comment_user'>
@@ -68,7 +108,18 @@ const CreateComment = () => {
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                             ref={statusRef}
+                            onKeyUp={handleComment}
                         />
+                        <div
+                            className='comment_circle'
+                            style={{ marginTop: "5px" }}
+                        >
+                            <ClipLoader
+                                size={20}
+                                color='#1876f2'
+                                loading={loading}
+                            />
+                        </div>
                         <div
                             className='create_comment_icon'
                             onClick={() => setShowEmoji((prev) => !prev)}
