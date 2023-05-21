@@ -4,21 +4,29 @@ import CreateComment from "./createComment";
 import { reactPost, getReacts } from "../../function/react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducer";
+import Comment from "./comments";
 
 interface Props {
     postId: string;
+    postComments: any;
 }
-const UserInteraction: React.FC<Props> = ({ postId }) => {
+const UserInteraction: React.FC<Props> = ({ postId, postComments }) => {
     const [showReact, setShowReact] = useState(false);
     const [reacts, setReacts] = useState<any>();
     const [check, setCheck] = useState<any>();
     const [total, setTotal] = useState(0);
     const [selectedReact, setSelectedReact] = useState("");
+    const [comments, setComments] = useState([]);
+    const [count, setCount] = useState(1);
 
     const user = useSelector<RootState, UserResponse>((state) => state.user);
     useEffect(() => {
         getPostReacts();
     }, []);
+
+    useEffect(() => {
+        setComments(postComments);
+    }, [postComments]);
 
     const getPostReacts = async () => {
         const res = await getReacts(postId, user?.token || "");
@@ -62,6 +70,10 @@ const UserInteraction: React.FC<Props> = ({ postId }) => {
             }
             setCheck(type);
         }
+    };
+
+    const showMore = () => {
+        setCount((prev) => prev + 3);
     };
     return (
         <div className='user_interaction_container'>
@@ -157,8 +169,27 @@ const UserInteraction: React.FC<Props> = ({ postId }) => {
                 userName={user.userName}
                 token={user.token || ""}
                 postId={postId}
+                setComments={setComments}
             />
-            <div className='user_interaction_comments_section'></div>
+            <div className='user_interaction_comments_section'>
+                {comments &&
+                    comments
+                        .sort((a: any, b: any) => {
+                            return (
+                                new Date(b.commentAt).valueOf() -
+                                new Date(a.commentAt).valueOf()
+                            );
+                        })
+                        .slice(0, count)
+                        .map((comment, i) => (
+                            <Comment comment={comment} key={i} />
+                        ))}
+                {count < comments.length && (
+                    <div className='view_comments' onClick={() => showMore()}>
+                        View more comments
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

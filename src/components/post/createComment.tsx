@@ -15,8 +15,14 @@ interface Props {
     userName: string;
     postId: string;
     token: string;
+    setComments: (comment: any) => void;
 }
-const CreateComment: React.FC<Props> = ({ userName, postId, token }) => {
+const CreateComment: React.FC<Props> = ({
+    userName,
+    postId,
+    token,
+    setComments,
+}) => {
     const user = useSelector<RootState, UserResponse>((state) => state.user);
     const [showEmoji, setShowEmoji] = useState(false);
     const statusRef = useRef<HTMLInputElement>(null);
@@ -83,6 +89,7 @@ const CreateComment: React.FC<Props> = ({ userName, postId, token }) => {
                     imgComment[0].url,
                     token
                 );
+                setComments([...comments]);
                 setLoading(false);
                 setText("");
                 setImage("");
@@ -90,6 +97,7 @@ const CreateComment: React.FC<Props> = ({ userName, postId, token }) => {
                 setLoading(true);
 
                 const comments = await comment(postId, text, "", token);
+                setComments([...comments]);
                 setLoading(false);
                 setText("");
                 setImage("");
