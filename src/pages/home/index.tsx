@@ -41,7 +41,7 @@ const Home = () => {
     return (
         <div>
             <Header page='home' />
-            <HomeComponent posts={posts} />
+            <HomeComponent posts={posts} postDispatch={dispatch} />
         </div>
     );
 };

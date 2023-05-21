@@ -86,11 +86,12 @@ const UserInteraction: React.FC<Props> = ({ postId, postComments }) => {
                             })
                             .slice(0, 3)
                             .map(
-                                (react: any) =>
+                                (react: any, i: number) =>
                                     react.count > 0 && (
                                         <img
                                             src={`../../../reacts/${react.react}.svg`}
                                             alt=''
+                                            key={i}
                                         />
                                     )
                             )}

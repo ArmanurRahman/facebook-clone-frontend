@@ -56,6 +56,7 @@ interface Props {
     token?: string;
     userName: string;
     posts: Array<Post>;
+    postDispatch: any;
 }
 const HomeMiddle: React.FC<Props> = ({
     picture,
@@ -66,6 +67,7 @@ const HomeMiddle: React.FC<Props> = ({
     token,
     userName,
     posts,
+    postDispatch,
 }) => {
     return (
         <div className='home_middle_container'>
@@ -78,6 +80,7 @@ const HomeMiddle: React.FC<Props> = ({
                 userId={userId}
                 token={token}
                 userName={userName}
+                postDispatch={postDispatch}
             />
             <div className='post_container'>
                 {posts.map((post) => (

@@ -17,6 +17,7 @@ interface Props {
     userId: string;
     token?: string;
     userName: string;
+    postDispatch: any;
 }
 const PostPopup: React.FC<Props> = ({
     picture,
@@ -26,6 +27,7 @@ const PostPopup: React.FC<Props> = ({
     userId,
     token,
     userName,
+    postDispatch,
 }) => {
     const [postPreview, setPostPreview] = useState(false);
     const [status, setStatus] = useState("");
@@ -49,9 +51,10 @@ const PostPopup: React.FC<Props> = ({
                 userId,
                 token
             );
-            if (res !== "ok") {
+            if (res.message !== "ok") {
                 setError(res);
             } else {
+                postDispatch({ type: "POST_ADDED", payload: res.data });
                 setStatus("");
                 setBackground("");
                 setShowPostPopup(false);
@@ -73,9 +76,10 @@ const PostPopup: React.FC<Props> = ({
                 userId,
                 token
             );
-            if (postRes !== "ok") {
+            if (postRes.message !== "ok") {
                 setError(postRes);
             } else {
+                postDispatch({ type: "POST_ADDED", payload: postRes.data });
                 setStatus("");
                 setBackground("");
                 setShowPostPopup(false);
@@ -89,9 +93,10 @@ const PostPopup: React.FC<Props> = ({
                 userId,
                 token
             );
-            if (postRes !== "ok") {
+            if (postRes.message !== "ok") {
                 setError(postRes);
             } else {
+                postDispatch({ type: "POST_ADDED", payload: postRes.data });
                 setStatus("");
                 setBackground("");
                 setShowPostPopup(false);

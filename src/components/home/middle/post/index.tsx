@@ -11,6 +11,7 @@ interface Props {
     token?: string;
     userName: string;
     isFromProfile?: boolean;
+    postDispatch: any;
 }
 const HomePost: React.FC<Props> = ({
     picture,
@@ -20,6 +21,7 @@ const HomePost: React.FC<Props> = ({
     token,
     userName,
     isFromProfile,
+    postDispatch,
 }) => {
     const [showPostPopup, setShowPostPopup] = useState(false);
     return (
@@ -67,6 +69,7 @@ const HomePost: React.FC<Props> = ({
                     userId={userId}
                     token={token}
                     userName={userName}
+                    postDispatch={postDispatch}
                 />
             )}
         </div>

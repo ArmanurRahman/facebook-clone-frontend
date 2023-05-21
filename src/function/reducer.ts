@@ -10,13 +10,17 @@ interface ActionSuccess {
     type: "POSTS_SUCCESS";
     payload: Array<Post>;
 }
+interface ActionAdded {
+    type: "POST_ADDED";
+    payload: Post;
+}
 interface ActionError {
     type: "POSTS_ERROR";
     payload: string;
 }
 export const postReducer = (
     state: State,
-    action: ActionRequest | ActionSuccess | ActionError
+    action: ActionRequest | ActionSuccess | ActionError | ActionAdded
 ) => {
     switch (action.type) {
         case "POSTS_REQUEST":
@@ -27,6 +31,13 @@ export const postReducer = (
                 loading: false,
                 errror: "",
                 posts: action.payload,
+            };
+        case "POST_ADDED":
+            return {
+                ...state,
+                loading: false,
+                errror: "",
+                posts: [action.payload, ...state.posts],
             };
         case "POSTS_ERROR":
             return { ...state, loading: false, error: action.payload };

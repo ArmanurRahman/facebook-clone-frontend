@@ -11,7 +11,7 @@ export const createPost = async (
     token?: string
 ) => {
     try {
-        await axios.post(
+        const { data } = await axios.post(
             `${process.env.REACT_APP_BACKEND_URL}/createPost`,
             {
                 type,
@@ -27,7 +27,7 @@ export const createPost = async (
                 },
             }
         );
-        return "ok";
+        return { message: "ok", data };
     } catch (error: any) {
         return error.response.data.message;
     }

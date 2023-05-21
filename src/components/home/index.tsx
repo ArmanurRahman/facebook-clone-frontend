@@ -8,9 +8,10 @@ import { useMediaQuery } from "react-responsive";
 
 interface Props {
     posts: Array<Post>;
+    postDispatch: any;
 }
 
-const Home: React.FC<Props> = ({ posts }) => {
+const Home: React.FC<Props> = ({ posts, postDispatch }) => {
     const user = useSelector<RootState, UserResponse>((state) => state.user);
     const query950px = useMediaQuery({
         query: "(max-width: 900px)",
@@ -37,6 +38,7 @@ const Home: React.FC<Props> = ({ posts }) => {
                 token={user.token}
                 userName={user.userName}
                 posts={posts}
+                postDispatch={postDispatch}
             />
             {!query950px && <RightHome />}
         </div>
