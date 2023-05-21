@@ -14,6 +14,7 @@ const Post: React.FC<Props> = ({ post, loginUser }) => {
     const { user } = post;
     const [showMenu, setShowMenu] = useState(false);
     const menuBtnRef = useRef<HTMLDivElement>(null);
+    const [isSavePost, setIsSavePost] = useState<any>();
     return (
         <div className='post_box'>
             <div className='post_header'>
@@ -59,6 +60,9 @@ const Post: React.FC<Props> = ({ post, loginUser }) => {
                                 post.images ? post.images.length > 0 : false
                             }
                             setShowMenu={setShowMenu}
+                            post={post}
+                            isSavePost={isSavePost}
+                            setIsSavePost={setIsSavePost}
                             ref={menuBtnRef}
                         />
                     )}
@@ -128,7 +132,11 @@ const Post: React.FC<Props> = ({ post, loginUser }) => {
                     </div>
                 )}
             </div>
-            <UserInteraction postId={post._id} postComments={post.comments} />
+            <UserInteraction
+                postId={post._id}
+                postComments={post.comments}
+                setIsSavePost={setIsSavePost}
+            />
         </div>
     );
 };

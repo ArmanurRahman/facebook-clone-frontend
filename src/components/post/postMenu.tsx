@@ -1,5 +1,8 @@
 import { forwardRef, useRef, useState } from "react";
 import useOutsideClick from "../../helpers/useOutsideClick";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/reducer";
+import { savePost } from "../../function/post";
 
 interface MenuItemProps {
     title: string;
@@ -32,24 +35,49 @@ interface Props {
     postUser: string;
     isImage: boolean;
     setShowMenu: (a: boolean) => void;
+    post: Post;
+    isSavePost: boolean;
+    setIsSavePost: (a: boolean) => void;
     ref: any;
 }
 const PostMenu: React.FC<Props> = forwardRef((props, ref) => {
-    const { loginUser, postUser, isImage, setShowMenu } = props;
+    const user = useSelector<RootState, UserResponse>((state) => state.user);
+    const {
+        loginUser,
+        postUser,
+        isImage,
+        setShowMenu,
+        post,
+        isSavePost,
+        setIsSavePost,
+    } = props;
     const isOwnPost = useState(loginUser === postUser)[0];
-
     const postMenuRef = useRef<HTMLDivElement>(null);
     useOutsideClick(postMenuRef, () => setShowMenu(false), ref);
+
+    const saveHandler = async () => {
+        const res = await savePost(post._id, user.token || "");
+        if (res.message === "ok") {
+            if (isSavePost) {
+                setIsSavePost(false);
+            } else {
+                setIsSavePost(true);
+            }
+        }
+    };
+    console.log(post);
     return (
         <div className='post_menu_container' ref={postMenuRef}>
             <ul>
                 {isOwnPost && <MenuItem icon='pin_icon' title='Pin post' />}
+                <div onClick={saveHandler}>
+                    <MenuItem
+                        icon='save_icon'
+                        title={`${isSavePost ? "Unsave" : "Save"} post`}
+                        subtitle='Add this to your save item'
+                    />
+                </div>
 
-                <MenuItem
-                    icon='save_icon'
-                    title='Save post'
-                    subtitle='Add this to your save item'
-                />
                 <div className='line'></div>
                 {isOwnPost && <MenuItem icon='edit_icon' title='Edit post' />}
                 {!isOwnPost && (

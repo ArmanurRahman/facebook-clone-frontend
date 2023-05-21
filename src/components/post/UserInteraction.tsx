@@ -9,8 +9,13 @@ import Comment from "./comments";
 interface Props {
     postId: string;
     postComments: any;
+    setIsSavePost: (a: boolean) => void;
 }
-const UserInteraction: React.FC<Props> = ({ postId, postComments }) => {
+const UserInteraction: React.FC<Props> = ({
+    postId,
+    postComments,
+    setIsSavePost,
+}) => {
     const [showReact, setShowReact] = useState(false);
     const [reacts, setReacts] = useState<any>();
     const [check, setCheck] = useState<any>();
@@ -34,6 +39,7 @@ const UserInteraction: React.FC<Props> = ({ postId, postComments }) => {
         setCheck(res.check);
         setTotal(res.total);
         setSelectedReact(res.check);
+        setIsSavePost(res.checkSaved);
     };
 
     const reactHandler = async (type: string) => {
