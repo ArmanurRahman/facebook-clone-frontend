@@ -96,7 +96,9 @@ const UserInteraction: React.FC<Props> = ({ postId, postComments }) => {
                             )}
                     <div className='reacts_count_num'>{total > 0 && total}</div>
                 </div>
-                <p className='user_interaction_comments'>5 comments</p>
+                <p className='user_interaction_comments'>
+                    {comments.length || 0} comments
+                </p>
                 <p className='user_interaction_shares'>1 shares</p>
             </div>
             <div className='devider'></div>
