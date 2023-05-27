@@ -66,7 +66,6 @@ const Profile = () => {
             });
         }
     };
-    console.log(profile);
     return (
         <React.Fragment>
             <Header page='profile' />

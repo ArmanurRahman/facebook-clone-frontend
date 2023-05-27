@@ -432,9 +432,31 @@
 
 .header_account_active {
     border: 2px solid var(--blue-color);
-
 }
-
+.search_result_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem;
+    border-radius: 10px;
+}
+.search_result_item i {
+    cursor: pointer;
+}
+.search_result_item:hover {
+    background-color: var(--bg-third);
+}
+.search_result_item_name {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+}
+.search_result_item_name img {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+}
 @media (max-width: 1040px) {
     .header .header_search {
         padding: 10px;

@@ -195,3 +195,70 @@ export const deleteRequest = async (id: string, token: string) => {
         return error.response.data.message;
     }
 };
+export const search = async (searchTerm: string, token: string) => {
+    try {
+        const { data } = await axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/search/${searchTerm}`,
+            {},
+
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        return { message: "ok", data };
+    } catch (error: any) {
+        return error.response.data.message;
+    }
+};
+export const addToSearchHistory = async (searchUser: string, token: string) => {
+    try {
+        const { data } = await axios.put(
+            `${process.env.REACT_APP_BACKEND_URL}/addToSearchHistory`,
+            { searchUser },
+
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        return { message: "ok", data };
+    } catch (error: any) {
+        return error.response.data.message;
+    }
+};
+export const getSearchHistory = async (token: string) => {
+    try {
+        const { data } = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/getSearchHistory`,
+
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        return { message: "ok", data };
+    } catch (error: any) {
+        return error.response.data.message;
+    }
+};
+export const removeFromSearch = async (searchUser: string, token: string) => {
+    try {
+        const { data } = await axios.put(
+            `${process.env.REACT_APP_BACKEND_URL}/removeFromSearch`,
+            { searchUser },
+
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        return { message: "ok", data };
+    } catch (error: any) {
+        return error.response.data.message;
+    }
+};

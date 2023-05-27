@@ -84,7 +84,6 @@ const PostMenu: React.FC<Props> = forwardRef((props, ref) => {
             postDispatch({ type: "POST_DELETED", payload: post._id });
         }
     };
-    console.log(post);
     return (
         <div className='post_menu_container' ref={postMenuRef}>
             <ul>

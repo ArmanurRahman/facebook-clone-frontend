@@ -43,7 +43,6 @@ const UserInteraction: React.FC<Props> = ({
     };
 
     const reactHandler = async (type: string) => {
-        console.log(type);
         setSelectedReact(type);
         reactPost(postId, type, user?.token || "");
         if (!reacts) {

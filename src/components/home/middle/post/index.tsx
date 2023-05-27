@@ -11,7 +11,7 @@ interface Props {
     token?: string;
     userName: string;
     isFromProfile?: boolean;
-    postDispatch: any;
+    postDispatch?: any;
 }
 const HomePost: React.FC<Props> = ({
     picture,
