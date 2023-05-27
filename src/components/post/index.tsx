@@ -64,6 +64,7 @@ const Post: React.FC<Props> = ({ post, loginUser }) => {
                             isSavePost={isSavePost}
                             setIsSavePost={setIsSavePost}
                             ref={menuBtnRef}
+                            images={post.images}
                         />
                     )}
                     <div

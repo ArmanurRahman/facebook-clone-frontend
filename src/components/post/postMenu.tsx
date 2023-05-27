@@ -3,6 +3,7 @@ import useOutsideClick from "../../helpers/useOutsideClick";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducer";
 import { savePost } from "../../function/post";
+import { saveAs } from "file-saver";
 
 interface MenuItemProps {
     title: string;
@@ -39,6 +40,7 @@ interface Props {
     isSavePost: boolean;
     setIsSavePost: (a: boolean) => void;
     ref: any;
+    images?: Array<PostPicture>;
 }
 const PostMenu: React.FC<Props> = forwardRef((props, ref) => {
     const user = useSelector<RootState, UserResponse>((state) => state.user);
@@ -50,6 +52,7 @@ const PostMenu: React.FC<Props> = forwardRef((props, ref) => {
         post,
         isSavePost,
         setIsSavePost,
+        images,
     } = props;
     const isOwnPost = useState(loginUser === postUser)[0];
     const postMenuRef = useRef<HTMLDivElement>(null);
@@ -63,6 +66,13 @@ const PostMenu: React.FC<Props> = forwardRef((props, ref) => {
             } else {
                 setIsSavePost(true);
             }
+        }
+    };
+    const onPictureDownload = async () => {
+        if (images) {
+            images.forEach((item) => {
+                saveAs(item.url, `${Date.now()}.jpg`);
+            });
         }
     };
     console.log(post);
@@ -86,7 +96,11 @@ const PostMenu: React.FC<Props> = forwardRef((props, ref) => {
                         title='Turn on notification for this post'
                     />
                 )}
-                {isImage && <MenuItem icon='download_icon' title='Download' />}
+                {isImage && (
+                    <div onClick={onPictureDownload}>
+                        <MenuItem icon='download_icon' title='Download' />
+                    </div>
+                )}
                 {isImage && (
                     <MenuItem icon='fullscreen_icon' title='Full Screen' />
                 )}
