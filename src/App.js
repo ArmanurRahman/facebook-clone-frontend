@@ -6,6 +6,7 @@ import LoggedInRoute from "./routes/loggedInRoute";
 import NotLoggedInRoute from "./routes/NotLoggedInRoute";
 import Active from "./pages/home/active";
 import Reset from "./components/user/reset";
+import Friends from "./pages/friends";
 
 function App() {
     return (
@@ -15,6 +16,9 @@ function App() {
                 <Route path='/profile/:userName' element={<Profile />} />
                 <Route path='/' element={<Home />} />
                 <Route path='/activate/:token' element={<Active />} />
+                <Route path='/friends' element={<Friends />} />
+
+                <Route path='/friends/:type' element={<Friends />} exact />
             </Route>
             <Route element={<NotLoggedInRoute />}>
                 <Route path='/login' element={<Login />} />

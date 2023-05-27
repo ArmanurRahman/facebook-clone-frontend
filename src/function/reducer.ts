@@ -137,3 +137,38 @@ export const photoReducer = (
             return state;
     }
 };
+
+interface state {}
+interface FriemdShipRequest {
+    type: "FRIENDS_REQUEST";
+    payload: any;
+}
+interface FriemdShipSuccess {
+    type: "FRIENDS_SUCCESS";
+    payload: any;
+}
+interface FriemdShiperror {
+    type: "FRIENDS_ERROR";
+    payload: any;
+}
+export function friendspage(
+    state: any,
+    action: FriemdShipRequest | FriemdShipSuccess | FriemdShiperror
+) {
+    switch (action.type) {
+        case "FRIENDS_REQUEST":
+            return { ...state, loading: true, error: "" };
+        case "FRIENDS_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                data: action.payload,
+                error: "",
+            };
+        case "FRIENDS_ERROR":
+            return { ...state, loading: false, error: action.payload };
+
+        default:
+            return state;
+    }
+}

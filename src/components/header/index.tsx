@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { RootState } from "../../store/reducer";
 import {
     Friends,
+    FriendsActive,
     Gaming,
     Home,
     HomeActive,
@@ -24,7 +25,7 @@ import useOutsideClick from "../../helpers/useOutsideClick";
 import { Link } from "react-router-dom";
 
 interface Props {
-    page?: "home" | "profile";
+    page?: "home" | "profile" | "friends";
 }
 const Header: React.FC<Props> = ({ page }) => {
     const user = useSelector<RootState, UserResponse>((data) => data.user);
@@ -58,14 +59,16 @@ const Header: React.FC<Props> = ({ page }) => {
             )}
 
             <div className='header_middle'>
-                <div
-                    className={`icon hover1 ${page === "home" ? "active" : ""}`}
-                >
+                <Link to='/' className={`icon hover1 home`}>
                     {page === "home" ? <HomeActive /> : <Home color={color} />}
-                </div>
-                <div className='icon hover1'>
-                    <Friends color={color} />
-                </div>
+                </Link>
+                <Link to='/friends' className='icon hover1'>
+                    {page === "friends" ? (
+                        <FriendsActive />
+                    ) : (
+                        <Friends color={color} />
+                    )}
+                </Link>
                 <div className='icon hover1'>
                     <Watch color={color} />
                 </div>

@@ -8,7 +8,7 @@ import { useMediaQuery } from "react-responsive";
 
 interface Props {
     posts: Array<Post>;
-    postDispatch: any;
+    postDispatch?: any;
 }
 
 const Home: React.FC<Props> = ({ posts, postDispatch }) => {
