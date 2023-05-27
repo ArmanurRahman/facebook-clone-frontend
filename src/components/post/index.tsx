@@ -8,9 +8,10 @@ import { Link } from "react-router-dom";
 interface Props {
     post: Post;
     loginUser: string;
+    postDispatch?: any;
 }
 
-const Post: React.FC<Props> = ({ post, loginUser }) => {
+const Post: React.FC<Props> = ({ post, loginUser, postDispatch }) => {
     const { user } = post;
     const [showMenu, setShowMenu] = useState(false);
     const menuBtnRef = useRef<HTMLDivElement>(null);
@@ -65,6 +66,7 @@ const Post: React.FC<Props> = ({ post, loginUser }) => {
                             setIsSavePost={setIsSavePost}
                             ref={menuBtnRef}
                             images={post.images}
+                            postDispatch={postDispatch}
                         />
                     )}
                     <div

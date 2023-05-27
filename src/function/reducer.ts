@@ -14,13 +14,22 @@ interface ActionAdded {
     type: "POST_ADDED";
     payload: Post;
 }
+interface ActionDeleted {
+    type: "POST_DELETED";
+    payload: string;
+}
 interface ActionError {
     type: "POSTS_ERROR";
     payload: string;
 }
 export const postReducer = (
     state: State,
-    action: ActionRequest | ActionSuccess | ActionError | ActionAdded
+    action:
+        | ActionRequest
+        | ActionSuccess
+        | ActionError
+        | ActionAdded
+        | ActionDeleted
 ) => {
     switch (action.type) {
         case "POSTS_REQUEST":
@@ -38,6 +47,15 @@ export const postReducer = (
                 loading: false,
                 errror: "",
                 posts: [action.payload, ...state.posts],
+            };
+        case "POST_DELETED":
+            return {
+                ...state,
+                loading: false,
+                errror: "",
+                posts: state.posts.filter(
+                    (post) => post._id !== action.payload
+                ),
             };
         case "POSTS_ERROR":
             return { ...state, loading: false, error: action.payload };

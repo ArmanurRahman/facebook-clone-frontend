@@ -2,7 +2,7 @@ import { forwardRef, useRef, useState } from "react";
 import useOutsideClick from "../../helpers/useOutsideClick";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducer";
-import { savePost } from "../../function/post";
+import { savePost, deletePost } from "../../function/post";
 import { saveAs } from "file-saver";
 
 interface MenuItemProps {
@@ -41,6 +41,7 @@ interface Props {
     setIsSavePost: (a: boolean) => void;
     ref: any;
     images?: Array<PostPicture>;
+    postDispatch: any;
 }
 const PostMenu: React.FC<Props> = forwardRef((props, ref) => {
     const user = useSelector<RootState, UserResponse>((state) => state.user);
@@ -53,6 +54,7 @@ const PostMenu: React.FC<Props> = forwardRef((props, ref) => {
         isSavePost,
         setIsSavePost,
         images,
+        postDispatch,
     } = props;
     const isOwnPost = useState(loginUser === postUser)[0];
     const postMenuRef = useRef<HTMLDivElement>(null);
@@ -73,6 +75,13 @@ const PostMenu: React.FC<Props> = forwardRef((props, ref) => {
             images.forEach((item) => {
                 saveAs(item.url, `${Date.now()}.jpg`);
             });
+        }
+    };
+
+    const deletePostHandler = async () => {
+        const res = await deletePost(post._id, user.token || "");
+        if (res.message === "ok") {
+            postDispatch({ type: "POST_DELETED", payload: post._id });
         }
     };
     console.log(post);
@@ -130,11 +139,13 @@ const PostMenu: React.FC<Props> = forwardRef((props, ref) => {
                     <MenuItem icon='archive_icon' title='Move to archive' />
                 )}
                 {isOwnPost && (
-                    <MenuItem
-                        icon='trash_icon'
-                        title='Move to trash'
-                        subtitle='Item in your trash are deleted after 10days'
-                    />
+                    <div onClick={deletePostHandler}>
+                        <MenuItem
+                            icon='trash_icon'
+                            title='Move to trash'
+                            subtitle='Item in your trash are deleted after 10days'
+                        />
+                    </div>
                 )}
                 {!isOwnPost && <div className='line'></div>}
                 {!isOwnPost && (
